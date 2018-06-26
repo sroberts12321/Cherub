@@ -10,6 +10,9 @@ let session = require('express-session')
 let bodyParser = require('body-parser')
 
 
+const setVars = require("./setEnvironmentVars.js")
+setVars.setEnvironmentVariables()
+
 
 const { Pool } = require('pg')
 const pool = new Pool({
@@ -25,8 +28,8 @@ app.use(session({
   saveUninitialized: false
 }))
 
-app.use(express.static(path.join(__dirname, 'public')))
-app.set('views', path.join(__dirname, 'views'))
+app.use(express.static(path.join(process.env.ROOT_DIR, 'public')))
+app.set('views', path.join(process.env.ROOT_DIR, 'views'))
 app.set('view engine', 'handlebars')
 
 app.get('/login', (req, res) => res.render('login'))
