@@ -81,19 +81,29 @@ app.get('/register', (req, res) => res.render('register'))
 
 app.post('/register', (req, res) => {
 
-  console.log(req.body.username)
-  console.log(req.body.password)
-  console.log(req.body.email)
-  console.log(req.body.dob)
-  console.log(req.body.gender)
-  console.log(req.body.sexpref)
+bcrypt.hash(req.body.password, 10, function(err, hash) {
+  let newUser = db.UserProfile.build({
+    username: req.body.username,
+    dob: req.body.dob,
+    email: req.body.email,
+    sexpref: req.body.sexpref,
+    gender: req.body.gender,
+    password: hash,
+    bio: '',
+    youngest: 18,
+    oldest: 100,
+  })
+  })
 
-  //check if email already exists in users table
+  // save the student in the database
+  newUser.save().then(function(savedUser){
+    //console.log(savedUser)
+  })
 
-  bcrypt.hash(req.body.password, 10, function(err, hash) {
-  // Store hash in your password DB.
-  console.log(hash)
-})
+  console.log(newUser)
+
+  //check if email already exists in users table !!!
+
   res.redirect('/register')
 })
 
