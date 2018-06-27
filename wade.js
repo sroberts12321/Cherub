@@ -84,7 +84,8 @@ app.post('/register', (req, res) => {
 
 bcrypt.hash(req.body.password, 10, function(err, hash) {
   let newUser = db.UserProfile.build({
-    username: req.body.username,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
     dob: req.body.dob,
     email: req.body.email,
     sexpref: req.body.sexpref,
