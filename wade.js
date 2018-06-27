@@ -93,14 +93,13 @@ bcrypt.hash(req.body.password, 10, function(err, hash) {
     youngest: 18,
     oldest: 100,
   })
-  })
-
   // save the student in the database
   newUser.save().then(function(savedUser){
     //console.log(savedUser)
   })
 
   console.log(newUser)
+  })
 
   //check if email already exists in users table !!!
 
