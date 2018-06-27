@@ -34,11 +34,11 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 db.UserProfile.hasMany(db.Matchmaker,
-  {as: 'matchmakers'
+  {as: 'matchmakers',
   foreign-key: 'id' })
 
 db.UserProfile.hasMany(db.Nomination,
-    {as: 'nominations'
+    {as: 'nominations',
     foreign-key: 'id' })
 
 module.exports = db;
