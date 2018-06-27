@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.integer, //can be UUID
       primaryKey: true,
       allowNull: false
-    }
+    },
     //this is from userid
     matchmaker: DataTypes.integer,
     //this is from userid
