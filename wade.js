@@ -5,7 +5,8 @@ const PORT = process.env.PORT || 5000
 const app = express()
 
 var bcrypt = require('bcrypt')
-let models = require('./models')
+//let models = require('./models')
+let db = require('./models')
 const exphbs = require('express-handlebars')
 let session = require('express-session')
 let bodyParser = require('body-parser')
@@ -100,8 +101,8 @@ app.post('/register', (req, res) => {
     res.send("Error " + err);
   }
 }) */
-models.sequelize.sync().then(function() {
-  http.createServer(app).listen(app.get('port'), function(){
-    console.log('Express server listening on port ' + app.get('port'));
+db.sequelize.sync().then(function() {
+  http.createServer(app).listen(PORT), function(){
+    console.log('Express server listening on port ' + PORT);
   });
 })
