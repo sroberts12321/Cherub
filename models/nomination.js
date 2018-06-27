@@ -4,14 +4,14 @@ module.exports = (sequelize, DataTypes) => {
   var Nomination = sequelize.define('Nomination', {
     //id for matchmaker/nominee relationship
   nomineeprospectid: {
-      type: DataTypes.integer, //can be UUID
+      type: DataTypes.INTEGER, //can be UUID
       primaryKey: true,
       allowNull: false
     },
     //this is from userid
-    matchmaker: DataTypes.integer,
+    matchmaker: DataTypes.INTEGER,
     //this is from userid
-    nominee: DataTypes.integer,
+    nominee: DataTypes.INTEGER,
   }, {});
 
   return Nomination;

@@ -3,14 +3,14 @@
    var Matchmaker = sequelize.define('Matchmaker', {
      //id for matchmaker/nominee relationship
      matchmakernomineeid: {
-       type: DataTypes.integer, //can be UUID
+       type: DataTypes.INTEGER, //can be UUID
        primaryKey: true,
        allowNull: false
      },
      //this is from userid
-     nominee: DataTypes.integer,
+     nominee: DataTypes.INTEGER,
      //this is from userid
-     prospect: DataTypes.integer,
+     prospect: DataTypes.INTEGER,
    }, {});
 
    return Matchmaker;
