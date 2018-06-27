@@ -33,12 +33,8 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-db.UserProfile.hasMany(db.Matchmaker,
-  {as: 'matchmakers',
-  foreign-key: 'id' })
+db.UserProfile.hasMany(db.Matchmaker,{as: 'matchmakers',foreignKey: 'id' })
 
-db.UserProfile.hasMany(db.Nomination,
-    {as: 'nominations',
-    foreign-key: 'id' })
+db.UserProfile.hasMany(db.Nomination,{as: 'nominations',foreignKey: 'id' })
 
 module.exports = db;
