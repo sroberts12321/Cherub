@@ -6,7 +6,13 @@
   {{#userslist}}
 <p>{{username}}
 {{dob}}
-{{email}}</p>
+{{email}}
+<form action='/deleteUser' method='post'>
+  {{itemname}} {{quantity}}
+  <input type="hidden" name="userid" value='{{id}}' />
+  <button class='btn btn-primary' type="submit" value="Delete" >DELETE THIS</button>
+</form>
+</p>
   {{/userslist}}
 
 </body>

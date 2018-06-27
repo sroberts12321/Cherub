@@ -106,6 +106,16 @@ bcrypt.hash(req.body.password, 10, function(err, hash) {
   res.redirect('/register')
 })
 
+app.post('/deleteUser', (req, res) => {
+  db.UserProfile.destroy({
+    where: {
+      id : req.body.userid
+    }
+    }).then(function(){
+      res.redirect('/')
+  })
+})
+
 /* app.get('/db', async (req, res) => {
   try {
     const client = await pool.connect()
