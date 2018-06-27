@@ -102,7 +102,7 @@ app.post('/register', (req, res) => {
   }
 }) */
 db.sequelize.sync().then(function() {
-  http.createServer(app).listen(PORT), function(){
-    console.log('Express server listening on port ' + PORT);
+  http.createServer(app).listen(PORT, function(){
+    console.log('Express server listening on port ' + app.get('port'));
   });
 })
