@@ -6,7 +6,7 @@
        type: DataTypes.integer, //can be UUID
        primaryKey: true,
        allowNull: false
-     }
+     },
      //this is from userid
      nominee: DataTypes.integer,
      //this is from userid
