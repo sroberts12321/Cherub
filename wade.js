@@ -97,14 +97,11 @@ bcrypt.hash(req.body.password, 10, function(err, hash) {
   // save the student in the database
   newUser.save().then(function(savedUser){
     //console.log(savedUser)
+  }).then(function(){
+    res.redirect('/')
   })
-
-  console.log(newUser)
   })
-
   //check if email already exists in users table !!!
-
-  res.redirect('/')
 })
 
 app.post('/deleteUser', (req, res) => {
