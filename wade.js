@@ -45,10 +45,11 @@ app.post('/login', (req, res) => {
 console.log('login REEEEEE')
 console.log(req.body.email)
 console.log(req.body.password)
-bcrypt.hash(req.body.password, 10, function(err, hash) {
-// Store hash in your password DB.
-console.log(hash)
+bcrypt.compare(req.body.password, user.password, function(err, res) {
+    res.redirect('/')
 })
+
+
 
 })
 
@@ -103,7 +104,7 @@ bcrypt.hash(req.body.password, 10, function(err, hash) {
 
   //check if email already exists in users table !!!
 
-  res.redirect('/register')
+  res.redirect('/')
 })
 
 app.post('/deleteUser', (req, res) => {
