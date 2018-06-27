@@ -67,6 +67,16 @@ console.log(hash)
   res.render('login')
 } */
 
+app.get('/', (req, res) => {
+
+  db.UserProfile.findAll().then(function(users){
+    console.log(users)
+    res.render('users', {userslist: users})
+  })
+})
+
+
+
 app.get('/register', (req, res) => res.render('register'))
 
 app.post('/register', (req, res) => {
@@ -79,9 +89,6 @@ app.post('/register', (req, res) => {
   console.log(req.body.sexpref)
 
   //check if email already exists in users table
-
-
-
 
   bcrypt.hash(req.body.password, 10, function(err, hash) {
   // Store hash in your password DB.
