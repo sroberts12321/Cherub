@@ -1,5 +1,6 @@
 const express = require('express')
 const path = require('path')
+const http = require('http')
 const PORT = process.env.PORT || 5000
 const app = express()
 
@@ -13,12 +14,17 @@ let bodyParser = require('body-parser')
 const setVars = require("./setEnvironmentVars.js")
 setVars.setEnvironmentVariables()
 
-
 const { Pool } = require('pg')
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: true
 })
+
+app.use(express.favicon());
+app.use(express.logger('dev'));
+//app.use(express.bodyParser());
+app.use(express.methodOverride());
+//app.use(app.router);
 
 app.engine('handlebars',exphbs())
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -94,6 +100,8 @@ app.post('/register', (req, res) => {
     res.send("Error " + err);
   }
 }) */
-models.sequelize.sync().then(function() {
-  app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
+db.sequelize.sync().then(function() {
+  http.createServer(app).listen(app.get('port'), function(){
+    console.log('Express server listening on port ' + app.get('port'));
+  });
 })
