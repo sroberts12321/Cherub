@@ -94,5 +94,6 @@ app.post('/register', (req, res) => {
     res.send("Error " + err);
   }
 }) */
-
-app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
+models.sequelize.sync().then(function() {
+  app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
+})
