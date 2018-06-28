@@ -58,9 +58,9 @@ db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfoun
     req.session.cookie.maxAge = hour
     res.redirect('/profile')}
 
-    else {alert("YOU BROKE IT") res.redirect('/')}
+    else {res.redirect('/')}
   })
-}).catch(alert("YOU BROKE IT") res.redirect('/'))
+}).catch(res.redirect('/'))
 })
 
 //stephen.js
@@ -128,7 +128,7 @@ bcrypt.hash(req.body.register_password, 10, function(err, hash) {
     console.log(savedUser)
     res.redirect('/users')
     return
-  }).catch(alert("YOU BROKE IT") res.redirect('/'))
+  }).catch(res.redirect('/'))
   })
   //check if email already exists in users table !!!
 })
