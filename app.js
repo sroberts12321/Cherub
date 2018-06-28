@@ -90,7 +90,7 @@ app.post('/', (req, res)=>{
 })
 
 app.get('/profile', (req, res) => {
-  db.UserProfile.findAll({where: {email : req.session.email}).then(function(user){
+  db.UserProfile.findOne({where: {email : req.session.email}}).then(function(user){
    console.log(user)
    res.render('profile', {userslist: user})
   })
@@ -98,7 +98,7 @@ app.get('/profile', (req, res) => {
 
 
 app.get('/users', (req, res) => {
-  db.UserProfile.findOne().then(function(users){
+  db.UserProfile.findAll().then(function(users){
     console.log(users)
     res.render('users', {userslist: users})
   })
