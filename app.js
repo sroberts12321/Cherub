@@ -40,7 +40,7 @@ app.use(express.static(path.join(process.env.ROOT_DIR, 'public')))
 app.set('views', path.join(process.env.ROOT_DIR, 'views'))
 app.set('view engine', 'handlebars')
 
-app.get('/login', (req, res) => res.render('login'))
+//app.get('/login', (req, res) => res.render('login'))
 
 app.post('/login', (req, res) => {
 //verify matching username and password
@@ -60,7 +60,7 @@ db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfoun
 
     else{res.redirect('/register')}
   })
-})
+}).catch(res.redirect('/register'))
 })
 
 //stephen.js
