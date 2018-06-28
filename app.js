@@ -48,7 +48,7 @@ console.log(req.body.password)
 
 db.UserProfile.findOne({
   where: {
-    id : req.body.userid
+    email : req.body.email
   }
 }).then(function(userfound){
   console.log(userfound)
@@ -146,7 +146,8 @@ bcrypt.hash(req.body.password, 10, function(err, hash) {
   newUser.save().then(function(savedUser){
     console.log(savedUser)
     res.redirect('/users')
-  })
+    return
+  }).catch(()=> res.redirect('/register'))
   })
   //check if email already exists in users table !!!
 })
