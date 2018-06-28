@@ -56,7 +56,7 @@ db.UserProfile.findOne({where: {email : req.body.login_email}}).then(function(us
     var hour = 3600000
     req.session.cookie.expires = new Date(Date.now() + hour)
     req.session.cookie.maxAge = hour
-    res.redirect('/users')}
+    res.redirect('/profile')}
 
     else{res.redirect('/register')}
   })
@@ -89,21 +89,16 @@ app.post('/', (req, res)=>{
     // })
 })
 
-app.get('/profile',(req, res)=>{
-  res.render('profile')
-})
-
 app.get('/profile', (req, res) => {
-  db.UserProfile.findAll().then(function(users){
-   console.log(users)
-   res.render('profile', {userslist: users})
+  db.UserProfile.findAll({where: {email : req.session.email}).then(function(user){
+   console.log(user)
+   res.render('profile', {userslist: user})
   })
 })
 
 
 app.get('/users', (req, res) => {
-
-  db.UserProfile.findAll().then(function(users){
+  db.UserProfile.findOne().then(function(users){
     console.log(users)
     res.render('users', {userslist: users})
   })
