@@ -45,11 +45,17 @@ app.post('/login', (req, res) => {
 console.log('login REEEEEE')
 console.log(req.body.email)
 console.log(req.body.password)
-bcrypt.compare(req.body.password, user.password, function(err, res) {
-    res.redirect('/')
+
+db.UserProfile.findOne({
+  where: {
+    id : req.body.userid
+  }
+}).then(function(userfound){
+  console.log(userfound)
+  bcrypt.compare(req.body.password, userfound.password, function(err, res) {
+    res.redirect('/users')
+  })
 })
-
-
 
 })
 
