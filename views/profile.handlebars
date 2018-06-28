@@ -1,6 +1,6 @@
 <html>
     <head>
-        
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
@@ -23,7 +23,7 @@
 
         <!-- Custom styles for this template -->
         <link href="css/new-age.min.css" rel="stylesheet">
-        
+
         <link rel="shortcut icon" type="image/png" href="img/favicon.png">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top" id="mainNav">
@@ -46,7 +46,7 @@
               <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#" data-toggle="modal" data-target="#loginModal">Login</a> 
+              <a class="nav-link js-scroll-trigger" href="#" data-toggle="modal" data-target="#loginModal">Login</a>
             </li>
           </ul>
         </div>
@@ -59,9 +59,11 @@
       <header class="masthead">
         <div class="container h-100">
           <div class="col-lg-7 my-auto">
-        <img src="img/1_1 cropped.jpg" class="img-circle mx-auto d-block" alt="Profile Pic" width="304" height="304"> 
-        <h3 class="text-center">{Username}</h3>
+        {{#userslist}}
+        <img src="img/1_1 cropped.jpg" class="img-circle mx-auto d-block" alt="Profile Pic" width="304" height="304">
+        <h3 class="text-center">{{firstname}} {{lastname}}</h3>
         <p class="text-center">Integer placerat ultricies eleifend. Phasellus varius a est in efficitur. In eget risus est. Sed sed est eleifend, consectetur ante at, viverra felis. Duis a velit auctor, porta velit in, ultricies ante. Etiam fringilla magna ut congue malesuada. Pellentesque sit amet pulvinar augue. Integer erat metus, tempus vel tincidunt a, tincidunt id nunc.</p>
+        {{/userslist}}
         </div>
         </div>
         </header>
@@ -123,7 +125,7 @@
 
     <!-- Custom styles for this template -->
     <link href="css/new-age.min.css" rel="stylesheet">
-    
+
     <link rel="shortcut icon" type="image/png" href="img/favicon.png">
 
 
@@ -135,10 +137,10 @@
       <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button> -->
 
     <div id="deleteConfirmation" class="alert alert-primary" role="alert">
-    Are you sure you want to delete your profile?    
+    Are you sure you want to delete your profile?
     <button class="btn btn-primary">Cancel</button>
     <button class="btn btn-warning">Delete</button>
-    </div>  
+    </div>
 
       <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
@@ -191,7 +193,7 @@
               <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#" data-toggle="modal" data-target="#loginModal">Login</a> 
+              <a class="nav-link js-scroll-trigger" href="#" data-toggle="modal" data-target="#loginModal">Login</a>
             </li>
           </ul>
         </div>
@@ -204,8 +206,8 @@
           <div class="col-lg-7 my-auto">
             <div class="header-content mx-auto">
               <h1 class="mb-5">cherub is a new way to make connections. Pick your friend's dates, and let them pick yours.</h1>
-              
-              
+
+
               <a href="#" class="btn btn-outline btn-xl js-scroll-trigger" data-toggle="modal" data-target="#exampleModal">Sign Up for Free!</a>
             </div>
           </div>

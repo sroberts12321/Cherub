@@ -56,7 +56,7 @@ db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfoun
     var hour = 3600000
     req.session.cookie.expires = new Date(Date.now() + hour)
     req.session.cookie.maxAge = hour
-    res.redirect('/users')}
+    res.redirect('/profile')}
 
     else{res.redirect('/register')}
   })
@@ -89,20 +89,15 @@ app.post('/', (req, res)=>{
     // })
 })
 
-app.get('/profile',(req, res)=>{
-  res.render('profile')
-})
-
 app.get('/profile', (req, res) => {
-  db.UserProfile.findAll().then(function(users){
-   console.log(users)
-   res.render('profile', {userslist: users})
+  db.UserProfile.findOne({where: {email : req.session.email}}).then(function(user){
+   console.log(user)
+   res.render('profile', {userslist: user})
   })
 })
 
 
 app.get('/users', (req, res) => {
-
   db.UserProfile.findAll().then(function(users){
     console.log(users)
     res.render('users', {userslist: users})
@@ -115,18 +110,18 @@ app.get('/register', (req, res) => res.render('register'))
 
 app.post('/register', (req, res) => {
 
-bcrypt.hash(req.body.password, 10, function(err, hash) {
+bcrypt.hash(req.body.register_password, 10, function(err, hash) {
   let newUser = db.UserProfile.build({
     firstname: req.body.firstname,
     lastname: req.body.lastname,
     dob: req.body.dob,
-    email: req.body.email,
+    email: req.body.register_email,
     sexpref: req.body.sexpref,
     gender: req.body.gender,
     password: hash,
     bio: '',
-    youngest: 18,
-    oldest: 100,
+    youngest: req.body.min_age,
+    oldest: req.body.max_age,
   })
   // save the student in the database
   newUser.save().then(function(savedUser){
