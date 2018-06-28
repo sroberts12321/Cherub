@@ -29,6 +29,7 @@ const pool = new Pool({
 
 app.engine('handlebars',exphbs())
 app.use(bodyParser.urlencoded({ extended: false }))
+
 app.use(session({
   secret: 'doge',
   resave: false,
@@ -54,7 +55,8 @@ db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfoun
     // come back later even if we close the browser
     var hour = 3600000
     req.session.cookie.expires = new Date(Date.now() + hour)
-    req.session.cookie.maxAge = hourres.redirect('/users')return}
+    req.session.cookie.maxAge = hour
+    res.redirect('/users')return}
 
     else{res.redirect('/register')}
   })
