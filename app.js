@@ -58,7 +58,7 @@ db.UserProfile.findOne({
     else{res.redirect('/register')}
   })
 })
-
+//curse you git hub !!!
 })
 
 //verify matching username and password
