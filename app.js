@@ -68,14 +68,45 @@ bcrypt.compare(req.body.password, user.password, function(err, res) {
   res.render('login')
 } */
 
-
-app.get('/profile', (req, res) => {
-
-  db.UserProfile.findAll().then(function(users){
-    console.log(users)
-    res.render('users', {userslist: users})
-  })
+//stephen.js
+app.get('/', (req, res)=>{
+    res.render('landing')
 })
+
+//app.use(express.static('public'))
+
+app.post('/', (req, res)=>{
+    let email = req.body.register_email
+    let password = req.body.register_password
+    let gender = req.body.optradio
+    let sexpref = req.body.optradio2
+    console.log("works!")
+    console.log(email)
+    console.log(password)
+    console.log(gender)
+    console.log(sexpref)
+
+    // const list = models.list.build({
+    //     name: name
+    // })
+    // list.save().then((newList)=>{
+    //     console.log(newList)
+    // })
+})
+
+
+app.get('/profile',(req, res)=>{
+  res.render('profile')
+})
+
+
+// app.get('/profile', (req, res) => {
+//
+//   db.UserProfile.findAll().then(function(users){
+//     console.log(users)
+//     res.render('users', {userslist: users})
+//   })
+// })
 
 
 app.get('/users', (req, res) => {
