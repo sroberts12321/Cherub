@@ -29,6 +29,7 @@ const pool = new Pool({
 
 app.engine('handlebars',exphbs())
 app.use(bodyParser.urlencoded({ extended: false }))
+
 app.use(session({
   secret: 'doge',
   resave: false,
@@ -43,22 +44,19 @@ app.get('/login', (req, res) => res.render('login'))
 
 app.post('/login', (req, res) => {
 //verify matching username and password
-db.UserProfile.findOne({
-  where: {
-    email : req.body.email
-  }
-}).then(function(userfound){
+db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfound){
   console.log(userfound)
   bcrypt.compare(req.body.password, userfound.password, function(err, result) {
     console.log(result)
     if(result){
     //set that session BOI
-    req.session.email = email
+    req.session.email = userfound.email
     // setting the expiration date of the cookies so we can
     // come back later even if we close the browser
     var hour = 3600000
     req.session.cookie.expires = new Date(Date.now() + hour)
-    req.session.cookie.maxAge = hourres.redirect('/users')return}
+    req.session.cookie.maxAge = hour
+    res.redirect('/users')}
 
     else{res.redirect('/register')}
   })
