@@ -40,7 +40,7 @@ app.use(express.static(path.join(process.env.ROOT_DIR, 'public')))
 app.set('views', path.join(process.env.ROOT_DIR, 'views'))
 app.set('view engine', 'handlebars')
 
-//app.get('/login', (req, res) => res.render('login'))
+app.get('/test', (req, res) => res.render('test'))
 
 app.post('/login', (req, res) => {
 //verify matching username and password
@@ -141,6 +141,26 @@ app.post('/deleteUser', (req, res) => {
     }).then(function(){
       res.redirect('/users')
   })
+})
+
+//edit profile stuff
+
+app.post('/edit-firstname', (req, res) => {
+  db.UserProfile.update(
+    { firstname: req.body.firstname },
+    { where: id : req.body.id }
+    ).then(function(){
+      res.redirect('/users')
+  }).catch(res.redirect('/users'))
+})
+
+app.post('/edit-lastname', (req, res) => {
+  db.UserProfile.update(
+    { lastname: req.body.lastname },
+    { where: id : req.body.id }
+    ).then(function(){
+      res.redirect('/profile')
+  }).catch(res.redirect('/profile'))
 })
 
 /* app.get('/db', async (req, res) => {
