@@ -42,6 +42,33 @@ app.get('/profile',(req, res)=>{
   res.render('profile')
 })
 
+app.post('/register', (req, res)=>{
+  console.log("TRIGGERED!")
+  let firstname = req.body.firstname
+  let lastname = req.body.lastname
+  let email = req.body.register_email
+  let password = req.body.register_password
+  let dob = req.body.dob //year/month/day
+  let sexpref = req.body.sexpref
+  let gender = req.body.gender
+  console.log(firstname)
+  console.log(lastname)
+  console.log(email)
+  console.log(password)
+  console.log(dob)
+  console.log(sexpref)
+  console.log(gender)
+  res.render('profile')
+})
+
+app.post('/login', (req, res)=>{
+  let email = req.body.login_email
+  let password = req.body.login_password
+  console.log(email)
+  console.log(password)
+  res.render('profile')
+})
+
 
 function guid() {
     function s4() {
@@ -54,7 +81,7 @@ function guid() {
 
 
 
-app.listen(3000, ()=>console.log('Trips app is listening on port 3000!'))
+app.listen(3000, ()=>console.log('cherub app is listening on port 3000!'))
 
 
 
