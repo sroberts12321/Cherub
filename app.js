@@ -58,9 +58,9 @@ db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfoun
     req.session.cookie.maxAge = hour
     res.redirect('/profile')}
 
-    else{res.redirect('/register')}
+    else{res.redirect('/')}
   })
-}).catch(res.redirect('/register'))
+}).catch(res.redirect('/'))
 })
 
 //stephen.js
@@ -106,7 +106,7 @@ app.get('/users', (req, res) => {
 
 
 
-app.get('/register', (req, res) => res.render('register'))
+//app.get('/register', (req, res) => res.render('register'))
 
 app.post('/register', (req, res) => {
 
