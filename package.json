@@ -2,9 +2,9 @@
   "name": "cherub",
   "version": "1.0.0",
   "description": "dating app",
-  "main": "stephen.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node stephen.js"
+    "start": "node app.js"
   },
   "author": "cherub team",
   "license": "ISC",

@@ -34,7 +34,6 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 db.UserProfile.hasMany(db.Matchmaker,{as: 'matchmakers',foreignKey: 'id' })
-
 db.UserProfile.hasMany(db.Nomination,{as: 'nominations',foreignKey: 'id' })
-
+db.UserProfile.hasMany(db.Profilepic,{as: 'profilepics',foreignkey: 'id' })
 module.exports = db;
