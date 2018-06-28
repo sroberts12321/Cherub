@@ -45,12 +45,20 @@ app.post('/login', (req, res) => {
 console.log('login REEEEEE')
 console.log(req.body.email)
 console.log(req.body.password)
-bcrypt.compare(req.body.password, user.password, function(err, res) {
-    res.redirect('/')
+
+db.UserProfile.findOne({
+  where: {
+    email : req.body.email
+  }
+}).then(function(userfound){
+  console.log(userfound)
+  bcrypt.compare(req.body.password, userfound.password, function(err, result) {
+    console.log(result)
+    if(result){res.redirect('/users')}
+    else{res.redirect('/register')}
+  })
 })
-
-
-
+//curse you git hub !!!
 })
 
 //verify matching username and password
@@ -138,10 +146,10 @@ bcrypt.hash(req.body.password, 10, function(err, hash) {
   })
   // save the student in the database
   newUser.save().then(function(savedUser){
-    //console.log(savedUser)
-  }).then(function(){
+    console.log(savedUser)
     res.redirect('/users')
-  })
+    return
+  }).catch(()=> res.redirect('/register'))
   })
   //check if email already exists in users table !!!
 })
