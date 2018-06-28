@@ -148,7 +148,7 @@ app.post('/deleteUser', (req, res) => {
 app.post('/edit-firstname', (req, res) => {
   db.UserProfile.update(
     { firstname: req.body.firstname },
-    { where: id : req.body.id }
+    { where: {id : req.body.id} }
     ).then(function(){
       res.redirect('/users')
   }).catch(res.redirect('/users'))
@@ -157,7 +157,7 @@ app.post('/edit-firstname', (req, res) => {
 app.post('/edit-lastname', (req, res) => {
   db.UserProfile.update(
     { lastname: req.body.lastname },
-    { where: id : req.body.id }
+    { where: {id : req.body.id} }
     ).then(function(){
       res.redirect('/profile')
   }).catch(res.redirect('/profile'))
