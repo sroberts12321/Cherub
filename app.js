@@ -58,7 +58,7 @@ db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfoun
     req.session.cookie.maxAge = hour
     res.redirect('/profile')}
 
-    else{alert("YOU BROKE IT") res.redirect('/')}
+    else {alert("YOU BROKE IT") res.redirect('/')}
   })
 }).catch(alert("YOU BROKE IT") res.redirect('/'))
 })
