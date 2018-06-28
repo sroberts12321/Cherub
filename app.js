@@ -44,9 +44,9 @@ app.get('/login', (req, res) => res.render('login'))
 
 app.post('/login', (req, res) => {
 //verify matching username and password
-db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfound){
+db.UserProfile.findOne({where: {email : req.body.login_email}}).then(function(userfound){
   console.log(userfound)
-  bcrypt.compare(req.body.password, userfound.password, function(err, result) {
+  bcrypt.compare(req.body.login_password, userfound.password, function(err, result) {
     console.log(result)
     if(result){
     //set that session BOI
