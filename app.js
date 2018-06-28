@@ -42,10 +42,7 @@ app.set('view engine', 'handlebars')
 app.get('/login', (req, res) => res.render('login'))
 
 app.post('/login', (req, res) => {
-console.log('login REEEEEE')
-console.log(req.body.email)
-console.log(req.body.password)
-
+//verify matching username and password
 db.UserProfile.findOne({
   where: {
     email : req.body.email
@@ -54,27 +51,19 @@ db.UserProfile.findOne({
   console.log(userfound)
   bcrypt.compare(req.body.password, userfound.password, function(err, result) {
     console.log(result)
-    if(result){res.redirect('/users')}
+    if(result){
+    //set that session BOI
+    req.session.email = email
+    // setting the expiration date of the cookies so we can
+    // come back later even if we close the browser
+    var hour = 3600000
+    req.session.cookie.expires = new Date(Date.now() + hour)
+    req.session.cookie.maxAge = hourres.redirect('/users')return}
+
     else{res.redirect('/register')}
   })
 })
-//curse you git hub !!!
 })
-
-//verify matching username and password
-
-//set that session BOI
-
-/*
-  req.session.username = username
-  // setting the expiration date of the cookies so we can
-  // come back later even if we close the browser
-  var hour = 3600000
-  req.session.cookie.expires = new Date(Date.now() + hour)
-  req.session.cookie.maxAge = hour
-
-  res.render('login')
-} */
 
 //stephen.js
 app.get('/', (req, res)=>{
@@ -102,19 +91,16 @@ app.post('/', (req, res)=>{
     // })
 })
 
-
 app.get('/profile',(req, res)=>{
   res.render('profile')
 })
 
-
-// app.get('/profile', (req, res) => {
-//
-//   db.UserProfile.findAll().then(function(users){
-//     console.log(users)
-//     res.render('users', {userslist: users})
-//   })
-// })
+app.get('/profile', (req, res) => {
+  db.UserProfile.findAll().then(function(users){
+   console.log(users)
+   res.render('profile', {userslist: users})
+  })
+})
 
 
 app.get('/users', (req, res) => {
