@@ -2,7 +2,7 @@
   "name": "cherub",
   "version": "1.0.0",
   "description": "dating app",
-  "main": "wade.js",
+  "main": "app.js",
   "scripts": {
     "start": "node wade.js"
   },
