@@ -144,8 +144,7 @@ bcrypt.hash(req.body.password, 10, function(err, hash) {
   })
   // save the student in the database
   newUser.save().then(function(savedUser){
-    //console.log(savedUser)
-  }).then(function(){
+    console.log(savedUser)
     res.redirect('/users')
   })
   })
