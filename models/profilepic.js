@@ -4,13 +4,13 @@
     var Profilepic = sequelize.define('Profilepic', {
       //id for matchmaker/nominee relationship
       profilepicid: {
-        type: DataTypes.integer, //can be UUID
+        type: DataTypes.INTEGER, //can be UUID
         primaryKey: true,
         allowNull: false
-      }
-      imgsource: DataTypes.string,
+      },
+      imgsource: DataTypes.STRING,
       //this is from userid
-      userid: DataTypes.integer,
+      userid: DataTypes.INTEGER,
 
     }, {});
 
