@@ -29,6 +29,7 @@ const pool = new Pool({
 
 app.engine('handlebars',exphbs())
 app.use(bodyParser.urlencoded({ extended: false }))
+
 app.use(session({
   secret: 'doge',
   resave: false,
@@ -42,44 +43,61 @@ app.set('view engine', 'handlebars')
 app.get('/login', (req, res) => res.render('login'))
 
 app.post('/login', (req, res) => {
-console.log('login REEEEEE')
-console.log(req.body.email)
-console.log(req.body.password)
-bcrypt.compare(req.body.password, user.password, function(err, res) {
-    res.redirect('/')
-})
-
-
-
-})
-
 //verify matching username and password
+db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfound){
+  console.log(userfound)
+  bcrypt.compare(req.body.password, userfound.password, function(err, result) {
+    console.log(result)
+    if(result){
+    //set that session BOI
+    req.session.email = userfound.email
+    // setting the expiration date of the cookies so we can
+    // come back later even if we close the browser
+    var hour = 3600000
+    req.session.cookie.expires = new Date(Date.now() + hour)
+    req.session.cookie.maxAge = hour
+    res.redirect('/profile')}
 
-//set that session BOI
+    else{res.redirect('/register')}
+  })
+})
+})
 
-/*
-  req.session.username = username
-  // setting the expiration date of the cookies so we can
-  // come back later even if we close the browser
-  var hour = 3600000
-  req.session.cookie.expires = new Date(Date.now() + hour)
-  req.session.cookie.maxAge = hour
+//stephen.js
+app.get('/', (req, res)=>{
+    res.render('landing')
+})
 
-  res.render('login')
-} */
+//app.use(express.static('public'))
 
+app.post('/', (req, res)=>{
+    let email = req.body.register_email
+    let password = req.body.register_password
+    let gender = req.body.optradio
+    let sexpref = req.body.optradio2
+    console.log("works!")
+    console.log(email)
+    console.log(password)
+    console.log(gender)
+    console.log(sexpref)
+
+    // const list = models.list.build({
+    //     name: name
+    // })
+    // list.save().then((newList)=>{
+    //     console.log(newList)
+    // })
+})
 
 app.get('/profile', (req, res) => {
-
-  db.UserProfile.findAll().then(function(users){
-    console.log(users)
-    res.render('users', {userslist: users})
+  db.UserProfile.findOne({where: {email : req.session.email}}).then(function(user){
+   console.log(user)
+   res.render('profile', {userslist: user})
   })
 })
 
 
 app.get('/users', (req, res) => {
-
   db.UserProfile.findAll().then(function(users){
     console.log(users)
     res.render('users', {userslist: users})
@@ -92,25 +110,25 @@ app.get('/register', (req, res) => res.render('register'))
 
 app.post('/register', (req, res) => {
 
-bcrypt.hash(req.body.password, 10, function(err, hash) {
+bcrypt.hash(req.body.register_password, 10, function(err, hash) {
   let newUser = db.UserProfile.build({
     firstname: req.body.firstname,
     lastname: req.body.lastname,
     dob: req.body.dob,
-    email: req.body.email,
+    email: req.body.register_email,
     sexpref: req.body.sexpref,
     gender: req.body.gender,
     password: hash,
     bio: '',
-    youngest: 18,
-    oldest: 100,
+    youngest: req.body.min_age,
+    oldest: req.body.max_age,
   })
   // save the student in the database
   newUser.save().then(function(savedUser){
-    //console.log(savedUser)
-  }).then(function(){
+    console.log(savedUser)
     res.redirect('/users')
-  })
+    return
+  }).catch(()=> res.redirect('/register'))
   })
   //check if email already exists in users table !!!
 })
