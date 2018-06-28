@@ -52,11 +52,10 @@ db.UserProfile.findOne({
   }
 }).then(function(userfound){
   console.log(userfound)
-  if(bcrypt.compare(req.body.password, userfound.password, function(err, res) {})){
-    res.redirect('/users')
-    return
-  }
-  else(res.redirect('/register'))
+  bcrypt.compare(req.body.password, userfound.password, function(err, result) {
+    if(result){res.redirect('/users')}
+    else{res.redirect('/register')}
+  })
 })
 
 })
