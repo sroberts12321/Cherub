@@ -58,9 +58,9 @@ db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfoun
     req.session.cookie.maxAge = hour
     res.redirect('/profile')}
 
-    else{res.redirect('/')}
+    else{alert("YOU BROKE IT") res.redirect('/')}
   })
-}).catch(res.redirect('/'))
+}).catch({alert("YOU BROKE IT") res.redirect('/')})
 })
 
 //stephen.js
@@ -70,24 +70,24 @@ app.get('/', (req, res)=>{
 
 //app.use(express.static('public'))
 
-app.post('/', (req, res)=>{
-    let email = req.body.register_email
-    let password = req.body.register_password
-    let gender = req.body.optradio
-    let sexpref = req.body.optradio2
-    console.log("works!")
-    console.log(email)
-    console.log(password)
-    console.log(gender)
-    console.log(sexpref)
-
-    // const list = models.list.build({
-    //     name: name
-    // })
-    // list.save().then((newList)=>{
-    //     console.log(newList)
-    // })
-})
+// app.post('/', (req, res)=>{
+//     let email = req.body.register_email
+//     let password = req.body.register_password
+//     let gender = req.body.optradio
+//     let sexpref = req.body.optradio2
+//     console.log("works!")
+//     console.log(email)
+//     console.log(password)
+//     console.log(gender)
+//     console.log(sexpref)
+//
+//     // const list = models.list.build({
+//     //     name: name
+//     // })
+//     // list.save().then((newList)=>{
+//     //     console.log(newList)
+//     // })
+// })
 
 app.get('/profile', (req, res) => {
   db.UserProfile.findOne({where: {email : req.session.email}}).then(function(user){
@@ -128,7 +128,7 @@ bcrypt.hash(req.body.register_password, 10, function(err, hash) {
     console.log(savedUser)
     res.redirect('/users')
     return
-  }).catch(()=> res.redirect('/register'))
+  }).catch(()=> {alert("YOU BROKE IT") res.redirect('/')})
   })
   //check if email already exists in users table !!!
 })
