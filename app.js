@@ -60,7 +60,7 @@ db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfoun
 
     else{alert("YOU BROKE IT") res.redirect('/')}
   })
-}).catch({alert("YOU BROKE IT") res.redirect('/')})
+}).catch(alert("YOU BROKE IT") res.redirect('/'))
 })
 
 //stephen.js
@@ -128,7 +128,7 @@ bcrypt.hash(req.body.register_password, 10, function(err, hash) {
     console.log(savedUser)
     res.redirect('/users')
     return
-  }).catch(()=> {alert("YOU BROKE IT") res.redirect('/')})
+  }).catch(alert("YOU BROKE IT") res.redirect('/'))
   })
   //check if email already exists in users table !!!
 })
