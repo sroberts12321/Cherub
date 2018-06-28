@@ -56,7 +56,7 @@ db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfoun
     var hour = 3600000
     req.session.cookie.expires = new Date(Date.now() + hour)
     req.session.cookie.maxAge = hour
-    res.redirect('/users')return}
+    res.redirect('/users')}
 
     else{res.redirect('/register')}
   })
