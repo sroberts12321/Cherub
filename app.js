@@ -72,12 +72,6 @@ app.get('/', (req, res)=>{
     res.render('landing')
 })
 
-// app.post('/', (req, res)=>{
-//   somthing
-//
-//     res.render('landing', {errormessage: users})
-// })
-
 app.use(express.static('public'))
 
 // app.post('/', (req, res)=>{
@@ -121,8 +115,6 @@ app.get('/users', (req, res) => {
   })
 })
 
-
-
 //app.get('/register', (req, res) => res.render('register'))
 
 app.post('/register', (req, res) => {
@@ -158,6 +150,14 @@ app.post('/deleteUser', (req, res) => {
       res.redirect('/users')
   })
 })
+
+app.post('/findmatches', (req, res) => {
+  db.UserProfile.findAll({where: {id : !(req.session.userid)}}).then(function(users){
+    res.render('users', {userslist: users})
+  })
+})
+
+app.
 
 //edit profile stuff
 
