@@ -61,6 +61,13 @@ db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfoun
 }).catch(res.redirect('/'))
 })
 
+app.post('/logout', (req, res) => {
+//destroy session then clear cookie
+req.session.destroy()
+
+}).catch(res.redirect('/'))
+})
+
 //stephen.js
 app.get('/', (req, res)=>{
     res.render('landing')
