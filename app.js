@@ -156,9 +156,9 @@ app.post('/deleteUser', (req, res) => {
 app.get('/findmatches', (req, res) => {
 
   db.UserProfile.findOne({where: {id : req.session.userid}}).then(function(user){
-  db.UserProfile.findAll({where:
-    {id : {[Op.not]:user.id},
-  {gender: {[Op.or]: {user.sexpref, 'both'}}}
+  db.UserProfile.findAll({where:{
+    id : {[Op.not]:user.id},
+  gender: {[Op.or]: {user.sexpref, 'both'}}
 }}).then(function(users){
     res.render('users', {userslist: users})
   })
