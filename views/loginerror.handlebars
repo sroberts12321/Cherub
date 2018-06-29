@@ -1,0 +1,129 @@
+<html>
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>cherub - Find Love With Friends</title>
+        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <link rel="stylesheet" href="device-mockups/device-mockups.min.css">
+
+        <!-- Custom styles for this template -->
+        <link href="css/new-age.min.css" rel="stylesheet">
+
+        <link rel="shortcut icon" type="image/png" href="img/favicon.png">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="/">cherub</a>
+        <img src="img/favicon.png" width="25px" height="25px">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#download">Download</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#features">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#" data-toggle="modal" data-target="#loginModal">Login</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    </head>
+
+
+
+
+
+
+
+
+    <body>
+      <header class="masthead">
+        <div class="container h-100">
+          <div class="col-lg-7 my-auto">
+
+            {{#passworderror}}
+            <img src="img/1_1 cropped.jpg" class="img-circle mx-auto d-block shadow p-3 mb-5 bg-white" alt="Profile Pic" width="304" height="304">
+            <h3 class="text-center">{{firstname}} {{lastname}}</h3>
+            <p class="text-center">You have logged in an incorrect password or email!</p>
+            {{/passworderror}}
+
+
+            </div>
+          </div>
+        </div>
+
+
+
+    <!-- Login Modal -->
+      <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form action="/login" method="POST">
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Email</label>
+                    <input type="text" class="form-control" name="email">
+                  </div>
+                  <div class="form-group">
+                    <label for="message-text" class="col-form-label" type="password">Password</label>
+                    <!-- <textarea class="form-control" id="message-text"></textarea> -->
+                    <input type="password" class="form-control" name="password">
+                  </div>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <input type="submit" class="btn btn-warning btn-outline btn-xl" value="submit"/>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+
+
+        </header>
+        <!-- Bootstrap core JavaScript -->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Plugin JavaScript -->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+        <!-- Custom scripts for this template -->
+        <script src="js/new-age.min.js"></script>
+        <script src="stephen.js"></script>
+
+    </body>
+</html>
