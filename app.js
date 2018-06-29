@@ -60,6 +60,7 @@ db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfoun
     }
   }).catch(route = '/')
 }).catch(route =  '/')
+console.log(route)
 res.redirect(route)
 })
 
