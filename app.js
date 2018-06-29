@@ -44,6 +44,7 @@ app.get('/test', (req, res) => res.render('test'))
 
 app.post('/login', (req, res) => {
 //verify matching username and password
+let route = '/profile'
 db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfound){
   console.log(userfound)
   bcrypt.compare(req.body.password, userfound.password, function(err, result) {
@@ -56,21 +57,27 @@ db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfoun
     var hour = 3600000
     req.session.cookie.expires = new Date(Date.now() + hour)
     req.session.cookie.maxAge = hour
-    res.redirect('/profile')}
-  })
-}).catch(res.redirect('/'))
+    }
+  }).catch(route = '/')
+}).catch(route =  '/')
 })
 
 app.post('/logout', (req, res) => {
 //destroy session then clear cookie
 req.session.destroy()
-res.redirect('/')
+res.redirect(route)
 })
 
 //stephen.js
 app.get('/', (req, res)=>{
     res.render('landing')
 })
+
+// app.post('/', (req, res)=>{
+//   somthing
+//
+//     res.render('landing', {errormessage: users})
+// })
 
 app.use(express.static('public'))
 
