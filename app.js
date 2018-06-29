@@ -44,23 +44,21 @@ app.get('/test', (req, res) => res.render('test'))
 
 app.post('/login', (req, res) => {
 //verify matching username and password
-let route = '/profile'
 db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfound){
   bcrypt.compare(req.body.password, userfound.password, function(err, result) {
     if(result){
-    //set that session BOI
-    req.session.id = userfound.id
-    // setting the expiration date of the cookies so we can
-    // come back later even if we close the browser
-    var hour = 3600000
-    req.session.cookie.expires = new Date(Date.now() + hour)
-    req.session.cookie.maxAge = hour
+      if(req.session){//set that session BOI
+      console.log(userfound.id)
+      req.session.userid = userfound.id
+      // setting the expiration date of the cookies so we can
+      // come back later even if we close the browser
+      var hour = 3600000
+      req.session.cookie.expires = new Date(Date.now() + hour)
+      req.session.cookie.maxAge = hour}
+      res.redirect('/profile')
     }
-    if(err){route = '/'}
   })
-}).catch(function(err) {route =  '/'})
-console.log(route)
-res.redirect('/profile')
+}).catch(function(err) {res.redirect('/')})
 })
 
 app.post('/logout', (req, res) => {
@@ -103,7 +101,7 @@ app.use(express.static('public'))
 
 app.get('/profile', (req, res) => {
   console.log(req.session.id)
-  db.UserProfile.findOne({where: {id : req.session.id}}).then(function(user){
+  db.UserProfile.findOne({where: {id : req.session.userid}}).then(function(user){
    console.log(user)
    res.render('profile', {userslist: user})
   })
@@ -146,8 +144,7 @@ bcrypt.hash(req.body.register_password, 10, function(err, hash) {
   newUser.save().then(function(savedUser){
     console.log(savedUser)
     res.redirect('/users')
-    return
-  }).catch(res.redirect('/'))
+  }).catch(()=>{res.redirect('/')})
   })
   //check if email already exists in users table !!!
 })
