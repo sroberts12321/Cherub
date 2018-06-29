@@ -66,7 +66,7 @@ app.get('/', (req, res)=>{
     res.render('landing')
 })
 
-//app.use(express.static('public'))
+app.use(express.static('public'))
 
 // app.post('/', (req, res)=>{
 //     let email = req.body.register_email
