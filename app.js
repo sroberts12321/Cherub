@@ -60,12 +60,13 @@ db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfoun
     }
   }).catch(route = '/')
 }).catch(route =  '/')
+res.redirect(route)
 })
 
 app.post('/logout', (req, res) => {
 //destroy session then clear cookie
 req.session.destroy()
-res.redirect(route)
+res.redirect('/')
 })
 
 //stephen.js
