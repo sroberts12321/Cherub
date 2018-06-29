@@ -156,10 +156,8 @@ app.post('/deleteUser', (req, res) => {
 app.get('/findmatches', (req, res) => {
 
   db.UserProfile.findOne({where: {id : req.session.userid}}).then(function(user){
-    let now = new Date()
-    let date_work_please = (now - user.dob)
-    console.log(date_work_please)
-  db.UserProfile.findAll({where: {id : {[Op.not]:user.id}}}).then(function(users){
+  db.UserProfile.findAll({where: {id : {[Op.not]:user.id}},
+  {gender: {[Op.or]: {user.sexpref, 'both'}}).then(function(users){
     res.render('users', {userslist: users})
   })
 })
