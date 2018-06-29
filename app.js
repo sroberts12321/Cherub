@@ -123,6 +123,7 @@ app.get('/users', (req, res) => {
 
 
 
+
 //app.get('/register', (req, res) => res.render('register'))
 
 app.post('/register', (req, res) => {
@@ -253,6 +254,9 @@ app.post('/edit-oldest', (req, res) => {
     res.send("Error " + err);
   }
 }) */
+
+// app.listen(3000, ()=>console.log('cherub app is listening on port 3000!'))
+
 db.sequelize.sync().then(function() {
   http.createServer(app).listen(PORT, function(){
     console.log('Express server listening on port ' + app.get('port'));
