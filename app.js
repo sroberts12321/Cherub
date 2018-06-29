@@ -47,8 +47,8 @@ app.post('/login', (req, res) => {
 let route = '/profile'
 db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfound){
   console.log(userfound)
+  console.log(req.body.password)
   bcrypt.compare(req.body.password, userfound.password, function(err, result) {
-    console.log(result)
     if(result){
     //set that session BOI
     req.session.id = userfound.id
@@ -58,7 +58,8 @@ db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfoun
     req.session.cookie.expires = new Date(Date.now() + hour)
     req.session.cookie.maxAge = hour
     }
-  }).catch(route = '/')
+    if(err){route = '/'}
+  })
 }).catch(route =  '/')
 console.log(route)
 res.redirect(route)
