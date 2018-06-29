@@ -64,8 +64,7 @@ db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfoun
 app.post('/logout', (req, res) => {
 //destroy session then clear cookie
 req.session.destroy()
-
-}).catch(res.redirect('/'))
+res.redirect('/')
 })
 
 //stephen.js
@@ -161,8 +160,8 @@ app.post('/edit-firstname', (req, res) => {
     { firstname: req.body.firstname },
     { where: {id : req.body.id} }
     ).then(function(){
-      res.redirect('/users')
-  }).catch(res.redirect('/users'))
+      res.redirect('/profile')
+  }).catch(res.redirect('/profile'))
 })
 
 app.post('/edit-lastname', (req, res) => {
