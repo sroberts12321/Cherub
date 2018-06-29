@@ -60,7 +60,7 @@ db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfoun
   })
 }).catch(function(err) {route =  '/'})
 console.log(route)
-res.redirect(route)
+res.redirect('/profile')
 })
 
 app.post('/logout', (req, res) => {
