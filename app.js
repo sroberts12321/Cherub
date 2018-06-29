@@ -10,6 +10,8 @@ let db = require('./models')
 const exphbs = require('express-handlebars')
 let session = require('express-session')
 let bodyParser = require('body-parser')
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op
 
 
 const setVars = require("./setEnvironmentVars.js")
@@ -72,12 +74,6 @@ app.get('/', (req, res)=>{
     res.render('landing')
 })
 
-// app.post('/', (req, res)=>{
-//   somthing
-//
-//     res.render('landing', {errormessage: users})
-// })
-
 app.use(express.static('public'))
 
 // app.post('/', (req, res)=>{
@@ -121,9 +117,6 @@ app.get('/users', (req, res) => {
   })
 })
 
-
-
-
 //app.get('/register', (req, res) => res.render('register'))
 
 app.post('/register', (req, res) => {
@@ -160,11 +153,38 @@ app.post('/deleteUser', (req, res) => {
   })
 })
 
+app.get('/findmatches', (req, res) => {
+
+  db.UserProfile.findOne({where: {id : req.session.userid}}).then(function(user){
+
+  if(user.sexpref == 'both'){
+    db.UserProfile.findAll({where:{
+      id : {[Op.not]:user.id},
+      [Op.or]: [{sexpref: user.gender},{sexpref: 'both'}]
+
+  }}).then(function(users){
+      res.render('users', {userslist: users})
+    })
+  }
+  else{
+  db.UserProfile.findAll({where:{
+    id : {[Op.not]:user.id},
+    [Op.or]: [{sexpref: user.gender},{sexpref: 'both'}],
+    gender: user.sexpref
+
+}}).then(function(users){
+    res.render('users', {userslist: users})
+  })
+}
+})
+})
+
+
 //edit profile stuff
 
 app.post('/edit-firstname', (req, res) => {
   db.UserProfile.update(
-    { firstname: req.body.firstname },
+    { firstname: req.body.firstname, },
     { where: {id : req.body.id} }
     ).then(function(){
       res.redirect('/profile')
