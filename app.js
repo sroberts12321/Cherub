@@ -10,6 +10,7 @@ let db = require('./models')
 const exphbs = require('express-handlebars')
 let session = require('express-session')
 let bodyParser = require('body-parser')
+const Op = Sequelize.Op
 
 
 const setVars = require("./setEnvironmentVars.js")
@@ -157,7 +158,7 @@ app.get('/findmatches', (req, res) => {
     let now = new Date()
     let date_work_please = (now - user.dob)
     console.log(date_work_please)
-  db.UserProfile.findAll({where: {id : !(user.id)}}).then(function(users){
+  db.UserProfile.findAll({where: {id : {[Op.not]:user.id}}}).then(function(users){
     res.render('users', {userslist: users})
   })
 })
@@ -168,7 +169,7 @@ app.get('/findmatches', (req, res) => {
 
 app.post('/edit-firstname', (req, res) => {
   db.UserProfile.update(
-    { firstname: req.body.firstname },
+    { firstname: req.body.firstname, },
     { where: {id : req.body.id} }
     ).then(function(){
       res.redirect('/profile')
