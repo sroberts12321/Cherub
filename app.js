@@ -46,7 +46,7 @@ app.post('/login', (req, res) => {
 //verify matching username and password
 let route = '/profile'
 db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfound){
-  console.log(userfound)
+  console.log(userfound.email)
   console.log(req.body.password)
   bcrypt.compare(req.body.password, userfound.password, function(err, result) {
     if(result){
