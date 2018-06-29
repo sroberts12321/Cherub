@@ -152,9 +152,12 @@ app.post('/deleteUser', (req, res) => {
 })
 
 app.post('/findmatches', (req, res) => {
+
+  db.UserProfile.findOne({where: {id : req.session.userid}}).then(function(user){
   db.UserProfile.findAll({where: {id : !(req.session.userid)}}).then(function(users){
     res.render('users', {userslist: users})
   })
+})
 })
 
 
