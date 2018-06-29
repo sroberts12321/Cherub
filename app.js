@@ -10,7 +10,7 @@ let db = require('./models')
 const exphbs = require('express-handlebars')
 let session = require('express-session')
 let bodyParser = require('body-parser')
-const sequelize = require('sequelize')
+const Sequelize = require('sequelize')
 const Op = Sequelize.Op
 
 
