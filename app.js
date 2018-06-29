@@ -49,6 +49,7 @@ db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfoun
   console.log(userfound.email)
   console.log(req.body.password)
   bcrypt.compare(req.body.password, userfound.password, function(err, result) {
+    console.log(result)
     if(result){
     //set that session BOI
     req.session.id = userfound.id
@@ -58,9 +59,10 @@ db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfoun
     req.session.cookie.expires = new Date(Date.now() + hour)
     req.session.cookie.maxAge = hour
     }
+    console.log(err)
     if(err){route = '/'}
   })
-}).catch(route =  '/')
+}).catch(function(err) {route =  '/'})
 console.log(route)
 res.redirect(route)
 })
