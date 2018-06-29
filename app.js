@@ -50,15 +50,13 @@ db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfoun
     console.log(result)
     if(result){
     //set that session BOI
-    req.session.email = userfound.email
+    req.session.id = userfound.id
     // setting the expiration date of the cookies so we can
     // come back later even if we close the browser
     var hour = 3600000
     req.session.cookie.expires = new Date(Date.now() + hour)
     req.session.cookie.maxAge = hour
     res.redirect('/profile')}
-
-    else {res.redirect('/')}
   })
 }).catch(res.redirect('/'))
 })
@@ -90,12 +88,18 @@ app.get('/', (req, res)=>{
 // })
 
 app.get('/profile', (req, res) => {
-  db.UserProfile.findOne({where: {email : req.session.email}}).then(function(user){
+  db.UserProfile.findOne({where: {id : req.session.id}}).then(function(user){
    console.log(user)
    res.render('profile', {userslist: user})
   })
 })
 
+app.post('/visitprofile', (req, res) => {
+  db.UserProfile.findOne({where: {id : req.body.id}}).then(function(user){
+   console.log(user)
+   res.render('profile', {userslist: user})
+  })
+})
 
 app.get('/users', (req, res) => {
   db.UserProfile.findAll().then(function(users){
@@ -157,6 +161,69 @@ app.post('/edit-firstname', (req, res) => {
 app.post('/edit-lastname', (req, res) => {
   db.UserProfile.update(
     { lastname: req.body.lastname },
+    { where: {id : req.body.id} }
+    ).then(function(){
+      res.redirect('/profile')
+  }).catch(res.redirect('/profile'))
+})
+
+app.post('/edit-dob', (req, res) => {
+  db.UserProfile.update(
+    { dob: req.body.dob },
+    { where: {id : req.body.id} }
+    ).then(function(){
+      res.redirect('/profile')
+  }).catch(res.redirect('/profile'))
+})
+
+app.post('/edit-email', (req, res) => {
+  db.UserProfile.update(
+    { email: req.body.email },
+    { where: {id : req.body.id} }
+    ).then(function(){
+      res.redirect('/profile')
+  }).catch(res.redirect('/profile'))
+})
+
+app.post('/edit-bio', (req, res) => {
+  db.UserProfile.update(
+    { bio: req.body.bio },
+    { where: {id : req.body.id} }
+    ).then(function(){
+      res.redirect('/profile')
+  }).catch(res.redirect('/profile'))
+})
+
+app.post('/edit-gender', (req, res) => {
+  db.UserProfile.update(
+    { gender: req.body.gender },
+    { where: {id : req.body.id} }
+    ).then(function(){
+      res.redirect('/profile')
+  }).catch(res.redirect('/profile'))
+})
+
+app.post('/edit-sexpref', (req, res) => {
+  db.UserProfile.update(
+    { sexpref: req.body.sexpref },
+    { where: {id : req.body.id} }
+    ).then(function(){
+      res.redirect('/profile')
+  }).catch(res.redirect('/profile'))
+})
+
+app.post('/edit-youngest', (req, res) => {
+  db.UserProfile.update(
+    { youngest: req.body.youngest },
+    { where: {id : req.body.id} }
+    ).then(function(){
+      res.redirect('/profile')
+  }).catch(res.redirect('/profile'))
+})
+
+app.post('/edit-oldest', (req, res) => {
+  db.UserProfile.update(
+    { oldest: req.body.oldest },
     { where: {id : req.body.id} }
     ).then(function(){
       res.redirect('/profile')
