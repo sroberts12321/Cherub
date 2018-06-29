@@ -159,7 +159,7 @@ app.get('/findmatches', (req, res) => {
   db.UserProfile.findAll({where:{
     id : {[Op.not]:user.id},
     [Op.or]: [{sexpref: user.gender},{sexpref: 'both'}]
-}).then(function(users){
+}}).then(function(users){
     res.render('users', {userslist: users})
   })
 })
