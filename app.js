@@ -156,12 +156,26 @@ app.post('/deleteUser', (req, res) => {
 app.get('/findmatches', (req, res) => {
 
   db.UserProfile.findOne({where: {id : req.session.userid}}).then(function(user){
+
+  if(user.sexpref == 'both'){
+    db.UserProfile.findAll({where:{
+      id : {[Op.not]:user.id},
+      [Op.or]: [{sexpref: user.gender},{sexpref: 'both'}]
+
+  }}).then(function(users){
+      res.render('users', {userslist: users})
+    })
+  }
+  else{
   db.UserProfile.findAll({where:{
     id : {[Op.not]:user.id},
-    [Op.or]: [{sexpref: user.gender},{sexpref: 'both'}]
+    [Op.or]: [{sexpref: user.gender},{sexpref: 'both'}],
+    gender: user.sexpref
+
 }}).then(function(users){
     res.render('users', {userslist: users})
   })
+}
 })
 })
 
