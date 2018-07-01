@@ -64,6 +64,7 @@ db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfoun
 app.post('/logout', (req, res) => {
 //destroy session then clear cookie
 req.session.destroy()
+//!!! clear the cookie as well
 res.redirect('/')
 })
 
@@ -199,10 +200,24 @@ app.get('/findmatches', (req, res) => {
 
 
 //edit profile stuff
+app.post('/editProfile', (req, res) => {
+  db.UserProfile.update(
+    { firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      sexpref: req.body.sexpref,
+      gender: req.body.gender,
+      bio: req.body.bio,
+      youngest: req.body.min_age,
+      oldest: req.body.max_age,},
+    { where: {id : req.body.id} }
+    ).then(function(){
+      res.redirect('/profile')
+  }).catch(res.redirect('/profile'))
+})
 
 app.post('/edit-firstname', (req, res) => {
   db.UserProfile.update(
-    { firstname: req.body.firstname, },
+    { firstname: req.body.firstname },
     { where: {id : req.body.id} }
     ).then(function(){
       res.redirect('/profile')
@@ -247,7 +262,7 @@ app.post('/edit-bio', (req, res) => {
 
 app.post('/edit-gender', (req, res) => {
   db.UserProfile.update(
-    { gender: req.body.gender },
+    { gender: req.body.gender},
     { where: {id : req.body.id} }
     ).then(function(){
       res.redirect('/profile')
