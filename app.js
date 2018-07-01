@@ -111,7 +111,7 @@ app.get('/profile', (req, res) => {
 app.post('/match', (req, res) => {
   let newNomination = db.Nomination.build({
     nomineeprospectid: req.session.userid,
-    nominee: req.body.id,
+    nominee: req.body.matchid,
   })
   // save the student in the database
   newNomination.save().then(function(savedNomination){
