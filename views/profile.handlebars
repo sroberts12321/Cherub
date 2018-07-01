@@ -26,12 +26,16 @@
     /* Larger than mobile */
 
     @media (min-width: 400px) {
+      #profile_pic {
+        width: 180px;
+        height: 180px;
+      }
       header.masthead {
         padding-top: 0;
 
       }
       .sm-col {
-        height: 60%;
+        height: 55%;
       }
       #v-pills-tabContent {
         width: 400;
@@ -47,8 +51,8 @@
 
       }
       #profile_pic {
-        width: 200px;
-        height: 200px;
+        width: 180px;
+        height: 180px;
       }
       #master {
         display: flex;
@@ -63,14 +67,19 @@
         width: 400;
       }
       .sm-col {
-        height: 60%;
+        height: 55%;
       }
+   
 
     }
 
     /* Larger than tablet */
 
     @media (min-width: 750px) {
+      #profile_pic {
+      width: 250px;
+      height: 250px;
+    }
       .row {
         display: flex;
       }
@@ -78,11 +87,16 @@
 
     /* Larger than desktop */
 
-    @media (min-width: 1000px) {}
+    @media (min-width: 1000px) {
+
+    }
 
     /* Larger than Desktop HD */
 
-    @media (min-width: 1200px) {}
+    @media (min-width: 1200px) {
+
+    }
+    
   </style>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top mb-0" id="mainNav">
@@ -91,7 +105,7 @@
       <img src="img/favicon.png" width="25px" height="25px">
       <ul class="navbar-nav float-right">
         <li class="nav-item">
-          <a class="nav-link" href="#" data-toggle="modal" data-target="#logout">Logout</a>
+          <a class="nav-link navbar-brand" href="#" data-toggle="modal" data-target="#logout">Logout</a>
         </li>
       </ul>
     </div>
@@ -107,25 +121,25 @@
           <div class="float-left">
             <div class="nav flex-column nav-tabs-google" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 
-              <h1>
+              <h1 class="nav-items">
                 <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home"
                   aria-selected="true">Home</a>
                 <br>
               </h1>
 
-              <h1>
+              <h1 class="nav-items">
                 <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile"
                   aria-selected="false">Bio</a>
                 <br>
               </h1>
 
-              <h1>
+              <h1 class="nav-items">
                 <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages"
                   aria-selected="false">Preferences</a>
                 <br>
               </h1>
 
-              <h1>
+              <h1 class="nav-items">
                 <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings"
                   aria-selected="false">Settings</a>
                 <br>
@@ -147,34 +161,46 @@
 
       
         <div class="col-4">
-          <ul class="tab-content mt-5" id="v-pills-tabContent">
+          <div class="tab-content mt-5" id="v-pills-tabContent">
+            {{!-- Insert Home info below --}}
             <div class="tab-pane fade" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+              <form action="/edit" method="post">
               <h2>{{firstname}} {{lastname}}</h2>
+              <input class="btn btn-outline-success" type="submit" value="Edit">
+              </form>
             </div>
 
             <!-- Insert Bio below -->
             <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-              <p>Integer placerat ultricies eleifend. Phasellus varius a est in efficitur. In eget risus est. Sed sed est eleifend,
-                consectetur ante at, viverra felis. Duis a velit auctor, porta velit in, ultricies ante. Etiam fringilla
-                magna ut congue malesuada. Pellentesque sit amet pulvinar augue. Integer erat metus, tempus vel tincidunt
-                a, tincidunt id nunc.</p>
-            </div>
-
+            <form action="/edit" method="post">
+                <p>Integer placerat ultricies eleifend. Phasellus varius a est in efficitur. In eget risus est. Sed sed est eleifend,
+                  consectetur ante at, viverra felis. Duis a velit auctor, porta velit in, ultricies ante. Etiam fringilla
+                  magna ut congue malesuada. Pellentesque sit amet pulvinar augue. Integer erat metus, tempus vel tincidunt
+                  a, tincidunt id nunc.</p>
+                  <input class="btn btn-outline-success" type="submit" value="Edit">
+              </div>
+            </form>
             <!-- Insert Preferences below -->
             <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-              <p>Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus.
-                Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus
-                tincidunt. </p>
-            </div>
+            <form action="/edit" method="post">
+                <p>Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus.
+                  Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus
+                  tincidunt. </p>
+                  <input class="btn btn-outline-success" type="submit" value="Edit">
+              </div>
+            </form>
 
             <!-- Insert Settings below -->
             <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+            <form action="/edit" method="post">
               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum
                 sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies
                 nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
+                <input class="btn btn-outline-success" type="submit" value="Edit">
             </div>
+            </form>
 
-          </ul>
+          </div>
         </div>
         {{/userslist}}
       </div>
