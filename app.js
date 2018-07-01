@@ -42,8 +42,6 @@ app.use(express.static(path.join(process.env.ROOT_DIR, 'public')))
 app.set('views', path.join(process.env.ROOT_DIR, 'views'))
 app.set('view engine', 'handlebars')
 
-app.get('/test', (req, res) => res.render('test'))
-
 app.post('/login', (req, res) => {
 //verify matching username and password
 db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfound){
@@ -103,12 +101,32 @@ app.get('/profile', (req, res) => {
   })
 })
 
-app.post('/visitprofile', (req, res) => {
-  db.UserProfile.findOne({where: {id : req.body.id}}).then(function(user){
-   console.log(user)
-   res.render('profile', {userslist: user})
+// app.post('/visitprofile', (req, res) => {
+//   db.UserProfile.findOne({where: {id : req.body.id}}).then(function(user){
+//    console.log(user)
+//    res.render('profile', {userslist: user})
+//   })
+// })
+
+app.post('/match', (req, res) => {
+  let newNomination = db.Nomination.build({
+    nomineeprospectid: req.session.userid,
+    nominee: req.body.id,
   })
+  // save the student in the database
+  newNomination.save().then(function(savedNomination){
+    console.log(savedNomination)
+    res.redirect('/test')
+  }).catch(()=>{res.redirect('/')})
+  })
+
+app.get('/test', (req, res) => {
+db.Nomination.findAll({where: {nomineeprospectid : req.session.userid}}).then(function(matches){
+ console.log(matches)
+ res.render('test', {matchesList: matches})
 })
+})
+
 
 app.get('/users', (req, res) => {
   db.UserProfile.findAll().then(function(users){
