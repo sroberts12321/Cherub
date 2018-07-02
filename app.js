@@ -224,7 +224,7 @@ app.get('/findmatches', (req, res) => {
 
 
 //edit profile stuff
-app.post('/editProfile', (req, res) => {
+app.post('/editprofile', (req, res) => {
 
   db.UserProfile.update(
     { firstname: req.body.firstname,
@@ -242,16 +242,17 @@ app.post('/editProfile', (req, res) => {
 })
 
 app.post('/addimage', (req, res) => {
-    let userpic = db.Profilepic.build({
-        imagesource: req.body.imagesource,
-        userid: req.body.userid,
-      })
-      // save the student in the database
-      userpic.save().then(function(savedPic){
-        console.log(savedPic)
-        res.redirect('/profile')
-      }).catch(function(err) {res.redirect('/profile')})
-      })
+  let userpic = db.Profilepic.build(
+    {imagesource: req.body.imagesource,
+    userid: req.body.id}
+    ).then(function(){
+
+    userpic.save().then(function(savedpic){
+      console.log(savedpic)
+      res.redirect('/profile')
+    })
+  }).catch(function(err) {res.redirect('/profile')})
+})
 
 // app.post('/edit-firstname', (req, res) => {
 //   db.UserProfile.update(
