@@ -234,19 +234,17 @@ app.post('/editProfile', (req, res) => {
   }).catch(function(err) {res.redirect('/profile')})
 })
 
-app.post('/addimage', (req, res) => {
-  let userpic = db.Profilepic.build(
-    {imagesource: req.body.imagesource}
-    {where: {id: req.body.id} }
-    ).then(function(){
-
-    userpic.save().then(function(savedpic){
-      console.log(savedpic)
-      res.redirect('/profile')
-    })
-
-  }).catch(function(err) {res.redirect('/profile')
-    })
+app.post('/match', (req, res) => {
+    let userpic = db.Profilepic.build({
+        imagesource: req.body.imagesource,
+        userid: req.body.userid,
+      })
+      // save the student in the database
+      userpic.save().then(function(savedPic){
+        console.log(savedPic)
+        res.redirect('/profile')
+      }).catch(function(err) {res.redirect('/profile')})
+      })
 
 // app.post('/edit-firstname', (req, res) => {
 //   db.UserProfile.update(
