@@ -25,6 +25,25 @@
 
   <link rel="shortcut icon" type="image/png" href="img/favicon.png">
 
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top mb-0" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="/">cherub</a>
+      <img src="img/favicon.png" width="25px" height="25px">
+      <ul class="navbar-nav float-right">
+        <li class="nav-item">
+          <form action="/profile" method="get">
+            <input class="btn btn-outline-light" type="submit" value="Profile">
+            {{!-- <a class="nav-link navbar-brand" href="#" type="submit">Logout</a> --}}
+          </form>
+        <li class="nav-item">
+          <form action="/logout" method="post">
+            <input class="btn btn-outline-light" type="submit" value="Logout">
+            {{!-- <a class="nav-link navbar-brand" href="#" type="submit">Logout</a> --}}
+          </form>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
 </head>
 <header class="masthead">
@@ -40,6 +59,7 @@
 -->
 <div class="card-body">
 <h3 class="card-title">{{firstname}} {{lastname}}</h3>
+<h5 class="card-title">{{email}}</h5>
 <p class="card-text">{{bio}}</p>
 <form action='/deleteMatch' method='post'>
   <input type="hidden" name="matchid" value="{{id}}"/>
