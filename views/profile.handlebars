@@ -146,10 +146,10 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="/deleteUser" method="POST">
-          <div class="form-group">
+        <form action="/deleteUser" method="post">
+
             <label for="recipient-name" class="col-form-label">Are you sure you want to delete your profile?</label>
-          </div>
+
       </div>
       <div class="modal-footer">
       <input type="submit" class="btn btn-warning" value="Delete">
@@ -240,6 +240,7 @@
                   consectetur ante at, viverra felis. Duis a velit auctor, porta velit in, ultricies ante. Etiam fringilla
                   magna ut congue malesuada. Pellentesque sit amet pulvinar augue. Integer erat metus, tempus vel tincidunt
                   a, tincidunt id nunc.</p> </h2>
+
                   <!-- <input class="btn btn-outline-success" type="submit" value="Edit">-->
 
 
@@ -337,26 +338,21 @@
                 </div>
               </div>
 
-
-
-
-
-
-
-
-
-
-
-
-              </form>
             </div>
 
+
             <!-- Insert Matches below -->
-            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+            <div class="tab-pane fade justify-content-center" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+              <form action="/findmatches" method="get">
+                  <input class="btn btn-warning btn-outline btn-xl" type="submit" value="Find Matches">
+              </form>
+              <br>
+              <br>
+              <br>
               <form action="/test" method="get">
                   <input class="btn btn-warning btn-outline btn-xl" type="submit" value="View Matches">
-                </div>
               </form>
+            </div>
             <!-- Insert Preferences below -->
             <!--stephen's old image form
                   <form action="/addimage" method="post">
@@ -405,7 +401,6 @@
 
                 </div>
               </div>
-
 
             <!-- Insert Settings below -->
             <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
