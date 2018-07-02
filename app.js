@@ -114,8 +114,16 @@ app.post('/match', (req, res) => {
     nomineeprospectid: req.session.userid,
     nominee: req.body.matchid,
   })
+
+  let reverseNomination = db.Nomination.build({
+    nomineeprospectid: req.body.matchid,
+    nominee: req.session.userid,
+  })
   // save the student in the database
   newNomination.save().then(function(savedNomination){
+    console.log(savedNomination)
+  })
+  reverseNomination.save().then(function(savedNomination){
     console.log(savedNomination)
     res.redirect('/test')
   }).catch(function(err) {res.redirect('/')})
