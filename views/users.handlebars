@@ -52,32 +52,25 @@
 
         <link rel="shortcut icon" type="image/png" href="img/favicon.png">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="/">cherub</a>
-        <img src="img/favicon.png" width="25px" height="25px">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fa fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#download">Download</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#features">Features</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#" data-toggle="modal" data-target="#loginModal">Login</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top mb-0" id="mainNav">
+          <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="/">cherub</a>
+            <img src="img/favicon.png" width="25px" height="25px">
+            <ul class="navbar-nav float-right">
+              <li class="nav-item">
+                <form action="/profile" method="get">
+                  <input class="btn btn-outline-light" type="submit" value="Profile">
+                  {{!-- <a class="nav-link navbar-brand" href="#" type="submit">Logout</a> --}}
+                </form>
+              <li class="nav-item">
+                <form action="/logout" method="post">
+                  <input class="btn btn-outline-light" type="submit" value="Logout">
+                  {{!-- <a class="nav-link navbar-brand" href="#" type="submit">Logout</a> --}}
+                </form>
+              </li>
+            </ul>
+          </div>
+        </nav>
 
     </head>
 
