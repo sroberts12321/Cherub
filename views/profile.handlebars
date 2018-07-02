@@ -102,6 +102,8 @@
 
   </style>
 
+  {{#userslist}}
+
 
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -216,7 +218,7 @@
         </div>
 
         <div class="sm-col">
-          {{#userslist}}
+
           <div class="h-100">
             <div class="col row-justify-content-center mt-5">
               <!-- Insert profile pic src below -->
@@ -242,15 +244,15 @@
                   magna ut congue malesuada. Pellentesque sit amet pulvinar augue. Integer erat metus, tempus vel tincidunt
                   a, tincidunt id nunc.</p> </h2>
 
-                  <!-- <input class="btn btn-outline-success" type="submit" value="Edit">-->
+                   <!-- <input class="btn btn-outline-success" type="submit" value="Edit"> -->
 
 
-              <a class="nav-link js-scroll-trigger d-flex justify-content-center" href="#" data-toggle="modal" data-target="#exampleModal">Add Image</a>
+              <a class="btn btn-outline-success nav-link js-scroll-trigger d-flex justify-content-center" href="#" data-toggle="modal" data-target="#exampleModal">Edit Profile</a>
 
 
               <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                  <div class="modal-content">
+                  <div class="modal-content blktxt">
                     <div class="modal-header">
                       <h5 class="modal-title" id="exampleModalLabel">edit profile</h5>
 
