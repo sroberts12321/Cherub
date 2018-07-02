@@ -184,7 +184,7 @@ app.post('/deleteUser', (req, res) => {
 app.post('/deleteMatch', (req, res) => {
   db.Nomination.destroy({
     where: {
-      id : req.body.matchid
+      nominee : req.body.matchid
     }
     }).then(function(){
       res.redirect('/test')
