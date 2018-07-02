@@ -241,7 +241,7 @@ app.post('/editProfile', (req, res) => {
   }).catch(function(err) {res.redirect('/profile')})
 })
 
-app.post('/match', (req, res) => {
+app.post('/addimage', (req, res) => {
     let userpic = db.Profilepic.build({
         imagesource: req.body.imagesource,
         userid: req.body.userid,
