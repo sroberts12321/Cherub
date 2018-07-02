@@ -57,7 +57,7 @@ db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfoun
       req.session.cookie.maxAge = hour}
       res.redirect('/profile')
     }
-  })
+  }).catch(function(err) {res.redirect('/')})
 }).catch(function(err) {res.redirect('/')})
 })
 
@@ -99,7 +99,7 @@ app.get('/profile', (req, res) => {
   db.UserProfile.findOne({where: {id : req.session.userid}}).then(function(user){
    console.log(user)
    res.render('profile', {userslist: user})
-  })
+  }).catch(function(err) {res.redirect('/')})
 })
 
 // app.post('/visitprofile', (req, res) => {
@@ -118,13 +118,11 @@ app.post('/match', (req, res) => {
   newNomination.save().then(function(savedNomination){
     console.log(savedNomination)
     res.redirect('/test')
-  }).catch(()=>{res.redirect('/')})
+  }).catch(function(err) {res.redirect('/')})
   })
 
 app.get('/test', (req, res) => {
 db.Nomination.findAll({where: {nomineeprospectid : req.session.userid}}).then(function(matches){
- console.log(matches[0])
- console.log(matches[0]['dataValues'].nominee)
  let matchesArray = []
  if(matches.length > 0){
    for(index = 0; index < matches.length; index++){
@@ -133,8 +131,8 @@ db.Nomination.findAll({where: {nomineeprospectid : req.session.userid}}).then(fu
  }
 db.UserProfile.findAll({where: { id: {[Op.in]: matchesArray}}}).then(function(matchedUsers){
 res.render('test', {matchesList: matchedUsers})
-  })
-  })
+  }).catch(function(err) {res.redirect('/')})
+  }).catch(function(err) {res.redirect('/')})
 })
 
 
@@ -166,7 +164,7 @@ bcrypt.hash(req.body.register_password, 10, function(err, hash) {
   newUser.save().then(function(savedUser){
     console.log(savedUser)
     res.redirect('/users')
-  }).catch(()=>{res.redirect('/')})
+  }).catch(function(err) {res.redirect('/')})
   })
   //check if email already exists in users table !!!
 })
@@ -231,7 +229,7 @@ app.post('/editProfile', (req, res) => {
     { where: {id : req.body.id} }
     ).then(function(){
       res.redirect('/profile')
-  }).catch(res.redirect('/profile'))
+  }).catch(function(err) {res.redirect('/')})
 })
 
 // app.post('/edit-firstname', (req, res) => {
