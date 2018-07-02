@@ -181,6 +181,16 @@ app.post('/deleteUser', (req, res) => {
   })
 })
 
+app.post('/deleteUser', (req, res) => {
+  db.Nomination.destroy({
+    where: {
+      id : req.body.matchid
+    }
+    }).then(function(){
+      res.redirect('/users')
+  })
+})
+
 app.get('/findmatches', (req, res) => {
 
   db.UserProfile.findOne({where: {id : req.session.userid}}).then(function(user){
