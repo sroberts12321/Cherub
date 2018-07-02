@@ -21,9 +21,10 @@
   <link rel="shortcut icon" type="image/png" href="img/favicon.png">
 
   <style>
-    .blktxt{
+    .blktxt {
       color: black;
     }
+
     /* Mobile first queries */
 
     /* Larger than mobile */
@@ -72,7 +73,7 @@
       .sm-col {
         height: 55%;
       }
-   
+
 
     }
 
@@ -80,9 +81,9 @@
 
     @media (min-width: 750px) {
       #profile_pic {
-      width: 250px;
-      height: 250px;
-    }
+        width: 250px;
+        height: 250px;
+      }
       .row {
         display: flex;
       }
@@ -90,20 +91,15 @@
 
     /* Larger than desktop */
 
-    @media (min-width: 1000px) {
-
-    }
+    @media (min-width: 1000px) {}
 
     /* Larger than Desktop HD */
 
-    @media (min-width: 1200px) {
-
-    }
-    
+    @media (min-width: 1200px) {}
   </style>
 
 
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -127,7 +123,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <input type="submit" class="btn btn-warning btn-outline btn-xl" value="submit"/>
+          <input type="submit" class="btn btn-warning btn-outline btn-xl" value="submit" />
         </div>
         </form>
       </div>
@@ -136,29 +132,29 @@
 
 
 
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="deleteModalLabel">Delete Profile</h5>
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Delete Profile</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="/deleteUser" method="post">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="/deleteUser" method="post">
 
             <label for="recipient-name" class="col-form-label">Are you sure you want to delete your profile?</label>
-          
-      </div>
-      <div class="modal-footer">
-      <input type="submit" class="btn btn-warning" value="Delete">
-        </form>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+        </div>
+        <div class="modal-footer">
+          <input type="submit" class="btn btn-warning" value="Delete">
+          </form>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
 
@@ -169,8 +165,8 @@
       <ul class="navbar-nav float-right">
         <li class="nav-item">
           <form action="/logout" method="post">
-            <input class="btn btn-outline-light" type="submit" value="Logout">
-            {{!-- <a class="nav-link navbar-brand" href="#" type="submit">Logout</a> --}}
+            <input class="btn btn-outline-light" type="submit" value="Logout"> {{!--
+            <a class="nav-link navbar-brand" href="#" type="submit">Logout</a> --}}
           </form>
         </li>
       </ul>
@@ -225,47 +221,51 @@
           </div>
         </div>
 
-      
+
         <div class="col-4">
           <div class="tab-content mt-5" id="v-pills-tabContent">
             {{!-- Insert Home info below --}}
             <div class="tab-pane fade" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
               <form action="/editProfile" method="post">
-              <h2 class="d-flex justify-content-center">{{firstname}} {{lastname}}</h2>
-              <h2>Gender : {{gender}}</h2>
-              <h2>Sexual Preference : {{sexpref}}</h2>
-              <h2>   Age preferences :</h2>
-              <h2>{{youngest}} - {{oldest}}</h2>
-              <h2>Bio : {{bio}} <p>Integer placerat ultricies eleifend. Phasellus varius a est in efficitur. In eget risus est. Sed sed est eleifend,
-                  consectetur ante at, viverra felis. Duis a velit auctor, porta velit in, ultricies ante. Etiam fringilla
-                  magna ut congue malesuada. Pellentesque sit amet pulvinar augue. Integer erat metus, tempus vel tincidunt
-                  a, tincidunt id nunc.</p> </h2>
-              <input class="btn btn-outline-success" type="submit" value="Edit">
-              
+                <h2 class="d-flex justify-content-center">{{firstname}} {{lastname}}</h2>
+                <h2>Gender : {{gender}}</h2>
+                <h2>Sexual Preference : {{sexpref}}</h2>
+                <h2> Age preferences :</h2>
+                <h2>{{youngest}} - {{oldest}}</h2>
+                <h2>Bio : {{bio}}
+                  <p>Integer placerat ultricies eleif`end. Phasellus varius a est in efficitur. In eget risus est. Sed sed est
+                    eleifend, consectetur ante at, viverra felis. Duis a velit auctor, porta velit in, ultricies ante. Etiam
+                    fringilla magna ut congue malesuada. Pellentesque sit amet pulvinar augue. Integer erat metus, tempus
+                    vel tincidunt a, tincidunt id nunc.</p>
+                </h2>
+                <input class="btn btn-outline-success" type="submit" value="Edit">
+
               </form>
             </div>
-            
+
 
             <!-- Insert Matches below -->
             <div class="tab-pane fade justify-content-center" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
               <form action="/findmatches" method="get">
-                  <input class="btn btn-warning btn-outline btn-xl" type="submit" value="Find Matches">
+                <input class="btn btn-warning btn-outline btn-xl" type="submit" value="Find Matches">
               </form>
               <br>
               <br>
               <br>
               <form action="/test" method="get">
-                  <input class="btn btn-warning btn-outline btn-xl" type="submit" value="View Matches">
+                <input class="btn btn-warning btn-outline btn-xl" type="submit" value="View Matches">
               </form>
             </div>
             <!-- Insert Preferences below -->
             <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
               <form action="/imgadd" method="post">
-              
-                    <h3><label>Picture URL</label></h3>
-                    <input class="blktxt" type="text" name="imgurl" placeholder="http://example.png"/>
-                    <input class="btn btn-warning btn-outline btn-xl" type="submit" value="Add Picture">
-                
+
+                <h3>
+                  <label>Picture URL</label>
+                </h3>
+                <input class="blktxt" type="text" name="imgurl" placeholder="http://example.png" />
+                <input class="btn btn-warning btn-outline btn-xl" type="submit" value="Add Picture">
+
               </form>
             </div>
 
@@ -274,7 +274,7 @@
               <h2 class="d-flex justify-content-center">Delete Profile</h2>
               <a class="nav-link js-scroll-trigger d-flex justify-content-center" href="#" data-toggle="modal" data-target="#deleteModal">Delete Profile</a>
             </div>
-            
+
 
           </div>
         </div>
