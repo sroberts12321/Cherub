@@ -129,7 +129,9 @@ db.Nomination.findAll({where: {nomineeprospectid : req.session.userid}}).then(fu
  if(matches.length != 0){
  }
  else{
-   matchesArray.push(matches[0]['dataValues'].nominee)
+   for(index = 0; index < matches.length; index++){
+   matchesArray.push(matches[index]['dataValues'].nominee)
+ }
  }
 db.UserProfile.findAll({where: { id: {[Op.in]: matchesArray}}}).then(function(matchedUsers){
 res.render('test', {matchesList: matchedUsers})
