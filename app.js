@@ -114,8 +114,16 @@ app.post('/match', (req, res) => {
     nomineeprospectid: req.session.userid,
     nominee: req.body.matchid,
   })
+
+  let reverseNomination = db.Nomination.build({
+    nomineeprospectid: req.body.matchid,
+    nominee: req.session.userid,
+  })
   // save the student in the database
   newNomination.save().then(function(savedNomination){
+    console.log(savedNomination)
+  })
+  reverseNomination.save().then(function(savedNomination){
     console.log(savedNomination)
     res.redirect('/test')
   }).catch(function(err) {res.redirect('/')})
@@ -224,7 +232,7 @@ app.get('/findmatches', (req, res) => {
 
 
 //edit profile stuff
-app.post('/editProfile', (req, res) => {
+app.post('/editprofile', (req, res) => {
 
   db.UserProfile.update(
     { firstname: req.body.firstname,
@@ -241,17 +249,18 @@ app.post('/editProfile', (req, res) => {
   }).catch(function(err) {res.redirect('/profile')})
 })
 
-app.post('/match', (req, res) => {
-    let userpic = db.Profilepic.build({
-        imagesource: req.body.imagesource,
-        userid: req.body.userid,
-      })
-      // save the student in the database
-      userpic.save().then(function(savedPic){
-        console.log(savedPic)
-        res.redirect('/profile')
-      }).catch(function(err) {res.redirect('/profile')})
-      })
+app.post('/addimage', (req, res) => {
+  let userpic = db.Profilepic.build(
+    {imagesource: req.body.imagesource,
+    userid: req.body.id}
+    ).then(function(){
+
+    userpic.save().then(function(savedpic){
+      console.log(savedpic)
+      res.redirect('/profile')
+    })
+  }).catch(function(err) {res.redirect('/profile')})
+})
 
 // app.post('/edit-firstname', (req, res) => {
 //   db.UserProfile.update(
