@@ -21,6 +21,9 @@
   <link rel="shortcut icon" type="image/png" href="img/favicon.png">
 
   <style>
+    .blktxt{
+      color: black;
+    }
     /* Mobile first queries */
 
     /* Larger than mobile */
@@ -198,7 +201,7 @@
 
               <h1 class="nav-items">
                 <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages"
-                  aria-selected="false">Preferences</a>
+                  aria-selected="false">Pictures</a>
                 <br>
               </h1>
 
@@ -227,7 +230,7 @@
           <div class="tab-content mt-5" id="v-pills-tabContent">
             {{!-- Insert Home info below --}}
             <div class="tab-pane fade" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-              <form action="/edit" method="post">
+              <form action="/editProfile" method="post">
               <h2 class="d-flex justify-content-center">{{firstname}} {{lastname}}</h2>
               <h2>Gender : {{gender}}</h2>
               <h2>Sexual Preference : {{sexpref}}</h2>
@@ -241,21 +244,20 @@
               </form>
             </div>
 
-            <!-- Insert Bio below -->
+            <!-- Insert Matches below -->
             <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-            <form action="/edit" method="post">
-                <p>Integer placerat ultricies eleifend. Phasellus varius a est in efficitur. In eget risus est. Sed sed est eleifend,
-                  consectetur ante at, viverra felis. Duis a velit auctor, porta velit in, ultricies ante. Etiam fringilla
-                  magna ut congue malesuada. Pellentesque sit amet pulvinar augue. Integer erat metus, tempus vel tincidunt
-                  a, tincidunt id nunc.</p>
-              </div>
-            </form>
+              <form action="/test" method="get">
+                  <input class="btn btn-warning btn-outline btn-xl" type="submit" value="View Matches">
+                </div>
+              </form>
             <!-- Insert Preferences below -->
             <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-            <form action="/edit" method="post">
-                <p>Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus.
-                  Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus
-                  tincidunt. </p>
+              <form action="/imgadd" method="post">
+                    <h3><label>Picture URL</label></h3>
+                    <input class="blktxt" type="text" name="imgurl" placeholder="http://example.png"/>
+                    <input class="btn btn-warning btn-outline btn-xl" type="submit" value="Add Picture">
+                </div>
+              </form>
               </div>
             </form>
 
