@@ -125,7 +125,13 @@ app.get('/test', (req, res) => {
 db.Nomination.findAll({where: {nomineeprospectid : req.session.userid}}).then(function(matches){
  console.log(matches[0])
  console.log(matches[0]['dataValues'].nominee)
-db.UserProfile.findAll({where: { id: {[Op.in]: matches.nominee}}}).then(function(matchedUsers){
+ let matchesArray = []
+ if(matches.length != 0){
+ }
+ else{
+   matchesArray.push(matches[0]['dataValues'].nominee)
+ }
+db.UserProfile.findAll({where: { id: {[Op.in]: matchesArray}}}).then(function(matchedUsers){
 res.render('test', {matchesList: matchedUsers})
   })
   })
