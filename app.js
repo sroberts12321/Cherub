@@ -201,6 +201,7 @@ app.get('/findmatches', (req, res) => {
 
 //edit profile stuff
 app.post('/editProfile', (req, res) => {
+
   db.UserProfile.update(
     { firstname: req.body.firstname,
       lastname: req.body.lastname,
@@ -212,9 +213,36 @@ app.post('/editProfile', (req, res) => {
     { where: {id : req.body.id} }
     ).then(function(){
       res.redirect('/profile')
-  }).catch(res.redirect('/profile'))
+
+      /*Handlebars.registerHelper('currentsex', function(user) {
+        if (user.gender === 'male')
+        return ''
+      } else {
+        return
+      }*/
+
+
+  }).catch(function(err) {res.redirect('/profile')})
 })
 
+
+app.post('/addimage', (req, res) => {
+  let userpic = db.Profilepic.build(
+    {imagesource: req.body.imagesource}
+    {where: {id: req.body.id} }
+  ).then(function(){
+
+    userpic.save().then(function(savedpic){
+      console.log(savedpic)
+      res.redirect('/profile')
+    })
+
+
+    res.redirect('/profile')
+  }).catch(function(err) {res.redirect('/profile')
+    })
+
+/*
 app.post('/edit-firstname', (req, res) => {
   db.UserProfile.update(
     { firstname: req.body.firstname },
@@ -295,6 +323,7 @@ app.post('/edit-oldest', (req, res) => {
       res.redirect('/profile')
   }).catch(res.redirect('/profile'))
 })
+*/
 
 /* app.get('/db', async (req, res) => {
   try {
