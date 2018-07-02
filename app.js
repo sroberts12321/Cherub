@@ -57,7 +57,7 @@ db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfoun
       req.session.cookie.maxAge = hour}
       res.redirect('/profile')
     }
-  }).catch(function(err) {res.redirect('/')})
+  })
 }).catch(function(err) {res.redirect('/')})
 })
 
@@ -99,7 +99,7 @@ app.get('/profile', (req, res) => {
   db.UserProfile.findOne({where: {id : req.session.userid}}).then(function(user){
    console.log(user)
    res.render('profile', {userslist: user})
-  }).catch(function(err) {res.redirect('/')})
+  })
 })
 
 // app.post('/visitprofile', (req, res) => {
@@ -131,7 +131,7 @@ db.Nomination.findAll({where: {nomineeprospectid : req.session.userid}}).then(fu
  }
 db.UserProfile.findAll({where: { id: {[Op.in]: matchesArray}}}).then(function(matchedUsers){
 res.render('test', {matchesList: matchedUsers})
-  }).catch(function(err) {res.redirect('/')})
+  })
   }).catch(function(err) {res.redirect('/')})
 })
 
