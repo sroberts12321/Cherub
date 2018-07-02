@@ -29,9 +29,22 @@
 </head>
 
 
-{{#matchesList}}
-<p>matches babyyyyyyyyyy</p>
-{{/matchesList}}
+{{#userslist}}
+<div class="card text-white bg-secondary mb-3">
+<img class="card-img-top" src="img/1_1 cropped.jpg" alt="Card image cap">
+<!--
+<img src="img/1_1 cropped.jpg" class="img-circle mx-auto d-block shadow p-3 mb-5 bg-white" alt="Profile Pic" width="180" height="180">
+-->
+<div class="card-body">
+<h3 class="card-title">{{firstname}} {{lastname}}</h3>
+<p class="card-text">{{bio}}</p>
+<form action='/deleteMatch' method='post'>
+  <input type="hidden" name="matchid" value="{{id}}"/>
+  <input type="submit" name='submitbtn' value="Delete Match" />
+</form>
+</div>
+</div>
+{{/userslist}}
 
 <!-- edit profile Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
