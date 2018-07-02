@@ -132,7 +132,7 @@ db.Nomination.findAll({where: {nomineeprospectid : req.session.userid}}).then(fu
 db.UserProfile.findAll({where: { id: {[Op.in]: matchesArray}}}).then(function(matchedUsers){
 res.render('test', {matchesList: matchedUsers})
   })
-  }).catch(function(err) {res.redirect('/')})
+}).catch(function(err) {res.redirect('/profile')})
 })
 
 
@@ -162,8 +162,15 @@ bcrypt.hash(req.body.register_password, 10, function(err, hash) {
   })
   // save the student in the database
   newUser.save().then(function(savedUser){
-    console.log(savedUser)
-    res.redirect('/users')
+    if(req.session){//set that session BOI
+    console.log(userfound.id)
+    req.session.userid = userfound.id
+    // setting the expiration date of the cookies so we can
+    // come back later even if we close the browser
+    var hour = 3600000
+    req.session.cookie.expires = new Date(Date.now() + hour)
+    req.session.cookie.maxAge = hour}
+    res.redirect('/profile')
   }).catch(function(err) {res.redirect('/')})
   })
   //check if email already exists in users table !!!
@@ -175,7 +182,7 @@ app.post('/deleteUser', (req, res) => {
       id : req.body.userid
     }
     }).then(function(){
-      res.redirect('/users')
+      res.redirect('/')
   })
 })
 
@@ -234,19 +241,17 @@ app.post('/editProfile', (req, res) => {
   }).catch(function(err) {res.redirect('/profile')})
 })
 
-app.post('/addimage', (req, res) => {
-  let userpic = db.Profilepic.build(
-    {imagesource: req.body.imagesource}
-    {where: {id: req.body.id} }
-    ).then(function(){
-
-    userpic.save().then(function(savedpic){
-      console.log(savedpic)
-      res.redirect('/profile')
-    })
-
-  }).catch(function(err) {res.redirect('/profile')
-    })
+app.post('/match', (req, res) => {
+    let userpic = db.Profilepic.build({
+        imagesource: req.body.imagesource,
+        userid: req.body.userid,
+      })
+      // save the student in the database
+      userpic.save().then(function(savedPic){
+        console.log(savedPic)
+        res.redirect('/profile')
+      }).catch(function(err) {res.redirect('/profile')})
+      })
 
 // app.post('/edit-firstname', (req, res) => {
 //   db.UserProfile.update(
