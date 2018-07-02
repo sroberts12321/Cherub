@@ -72,7 +72,7 @@
       .sm-col {
         height: 55%;
       }
-   
+
 
     }
 
@@ -99,7 +99,7 @@
     @media (min-width: 1200px) {
 
     }
-    
+
   </style>
 
 
@@ -152,6 +152,7 @@
           
       </div>
       <div class="modal-footer">
+        <input type="hidden" name="userid" value="{{id}}">
       <input type="submit" class="btn btn-warning" value="Delete">
         </form>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -225,7 +226,7 @@
           </div>
         </div>
 
-      
+
         <div class="col-4">
           <div class="tab-content mt-5" id="v-pills-tabContent">
             {{!-- Insert Home info below --}}
@@ -274,7 +275,7 @@
               <h2 class="d-flex justify-content-center">Delete Profile</h2>
               <a class="nav-link js-scroll-trigger d-flex justify-content-center" href="#" data-toggle="modal" data-target="#deleteModal">Delete Profile</a>
             </div>
-            
+
 
           </div>
         </div>
