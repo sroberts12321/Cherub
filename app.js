@@ -124,7 +124,7 @@ app.post('/match', (req, res) => {
 app.get('/test', (req, res) => {
 db.Nomination.findAll({where: {nomineeprospectid : req.session.userid}}).then(function(matches){
  console.log(matches[0])
- console.log(matches[0]['Nomination'].nominee)
+ console.log(matches[0]['dataValues'].nominee)
 db.UserProfile.findAll({where: { id: {[Op.in]: matches.nominee}}}).then(function(matchedUsers){
 res.render('test', {matchesList: matchedUsers})
   })
