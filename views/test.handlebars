@@ -34,6 +34,8 @@
 {{/matchesList}}
 
 <!-- edit profile Modal -->
+
+
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -44,20 +46,22 @@
           </button>
         </div>
         <div class="modal-body">
-          <form action="/editProfile" method="POST">
+          <form action="/editProfile" method="POST" >
+            <input type ='hidden' name='id' value='{{id}}'>
             <div class="form-group">
               <label class="col-form-label">First Name</label>
-              <input type="text" class="form-control" name="firstname" value={{firstname}}>
+              <input type="text" class="form-control" name="firstname" value='{{firstname}}'>
             </div>
             <div class="form-group">
               <label class="col-form-label">Last Name</label>
-              <input type="text" class="form-control" name="lastname ">
+              <input type="text" class="form-control" name="lastname" value='{{lastname}}'>
             </div>
-            <div style="margin: 1em 0 1.5em 6em;">
-                <label for="party-time">Date of Birth:</label>
-                <input type="date" id="dob" name="dob" max="2000-06-07"/>
-            </div>
+
             <div class="form-inline" style="display: inline-grid; margin: 0 3em 0 4em;">
+
+
+
+
               <label for="gender" class="col-form-label inline">Gender</label>
               <div class="radio" style="display:flex;">
               <label class="radio"><input type="radio" name="gender" value="male"> Male</label>
@@ -66,6 +70,9 @@
               <label class="radio"><input type="radio" name="gender" value="female"> Female</label>
               </div>
             </div>
+
+
+
             <div class="form-inline" style="display: inline-grid; margin: 0 3em 0 4em;">
               <label for="sex-pref" class="col-form-label inline">Sexual Preference</label>
               <div class="radio" style="display:flex;">
@@ -74,32 +81,38 @@
               <div class="radio" style="display:flex;">
                 <label class="radio"><input type="radio" name="sexpref" value="female">  Seeking Female</label>
               </div>
+
+
               <div class="radio" style="display:flex;">
                 <label class="radio"><input type="radio" name="sexpref" value="both">  Seeking Both</label>
               </div>
             </div>
-            <div class="form-inline">
-              <label class="col-form-label" for="min_age">Minimum age of Matches</label>
-              <input type="number" name="min_age" min="18" max="99" style="display:block;" value="18">
-              </div>
+
+
               <div class="form-inline">
-              <label class="col-form-label" for="max_age">Maximum age of Matches</label>
-              <input type="number" name="max_age" min="19" max="100" style="display:block;" value="19">
-            </div>
-            <div class="form-group">
-              <label class="col-form-label">Bio</label>
-              <input type="text" class="form-control" name="bio">
-            </div>
+                <label class="col-form-label" for="min_age">Minimum age of Matches</label>
+                <input type="number" name="min_age" min="18" max="99" style="display:block;" value={{youngest}}>
+                </div>
+                <div class="form-inline">
+                <label class="col-form-label" for="max_age">Maximum age of Matches</label>
+                <input type="number" name="max_age" min="19" max="100" style="display:block;" value={{oldest}}>
+              </div>
+              <div class="form-group">
+                <label class="col-form-label">Bio</label>
+                <input type="text" class="form-control" name="bio" value={{bio}}>
+              </div>
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <input type="submit" class="btn btn-warning btn-outline btn-xl" value="submit"/>
         </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <input type="submit" class="btn btn-warning btn-outline btn-xl" value="submit"/>
+        </form>
       </div>
-      </form>
     </div>
   </div>
-</div>
 
+
+<!--
 <form class='register-form' action='/edit-firstname' method='post'>
   <input type="hidden" name="id" value='23'/>
   <input type="text" name="firstname" placeholder="new firstname"/>
@@ -111,3 +124,5 @@
   <input type="text" name="lastname" placeholder="new lastname"/>
   <input type="submit" name='login' value="Login" />
 </form>
+
+-->
