@@ -126,9 +126,7 @@ db.Nomination.findAll({where: {nomineeprospectid : req.session.userid}}).then(fu
  console.log(matches[0])
  console.log(matches[0]['dataValues'].nominee)
  let matchesArray = []
- if(matches.length != 0){
- }
- else{
+ if(matches.length > 0){
    for(index = 0; index < matches.length; index++){
    matchesArray.push(matches[index]['dataValues'].nominee)
  }
