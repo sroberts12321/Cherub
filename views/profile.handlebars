@@ -187,10 +187,14 @@
                 <div class="form-inline">
                   <label class="col-form-label" for="min_age">Minimum age of Matches</label>
                   <input type="number" name="min_age" min="18" max="99" style="display:block;" value="18">
-                  </div>
-                  <div class="form-inline">
+                </div>
+                <div class="form-inline">
                   <label class="col-form-label" for="max_age">Maximum age of Matches</label>
                   <input type="number" name="max_age" min="19" max="100" style="display:block;" value="19">
+                </div>
+                <div class="form-group">
+                  <label class="col-form-label">Bio</label>
+                  <textarea name="bio" class="form-control" rows="5" cols="50" value='{{bio}}'></textarea>
                 </div>
             </div>
           <div class="modal-footer">
@@ -256,8 +260,7 @@
                 <h2 class="d-flex justify-content-center">{{firstname}} {{lastname}}</h2>
                 <h2>Gender : {{gender}}</h2>
                 <h2>Sexual Preference : {{sexpref}}</h2>
-                <h2>   Age preferences :</h2>
-                <h2>{{youngest}} - {{oldest}}</h2>
+                <h2>   Age preferences : {{youngest}} - {{oldest}}</h2>
                 <h2>Bio :</h2> <p>{{bio}}</p> 
                 <a class="btn btn-outline-success nav-link js-scroll-trigger d-flex justify-content-center" href="#" data-toggle="modal" data-target="#editProfileModal">Edit Profile</a>
 
