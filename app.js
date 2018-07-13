@@ -96,7 +96,7 @@ app.use(express.static('public'))
 
 app.get('/profile', (req, res) => {
   console.log(req.session.id)
-  console.log("testing")
+  
   db.UserProfile.findOne({where: {id : req.session.userid}}).then(function(user){
    console.log(user)
    res.render('profile', {userslist: user})
