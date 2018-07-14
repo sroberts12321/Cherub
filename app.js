@@ -19,7 +19,7 @@ setVars.setEnvironmentVariables()
 
 const { Pool } = require('pg')
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: process.env.production,
   ssl: true
 })
 
@@ -96,6 +96,7 @@ app.use(express.static('public'))
 
 app.get('/profile', (req, res) => {
   console.log(req.session.id)
+  
   db.UserProfile.findOne({where: {id : req.session.userid}}).then(function(user){
    console.log(user)
    res.render('profile', {userslist: user})
