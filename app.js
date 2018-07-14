@@ -96,7 +96,7 @@ app.use(express.static('public'))
 
 app.get('/profile', (req, res) => {
   console.log(req.session.id)
-  
+
   db.UserProfile.findOne({where: {id : req.session.userid}}).then(function(user){
    console.log(user)
    res.render('profile', {userslist: user})
@@ -242,7 +242,8 @@ app.post('/editprofile', (req, res) => {
       gender: req.body.gender,
       bio: req.body.bio,
       youngest: req.body.min_age,
-      oldest: req.body.max_age,},
+      oldest: req.body.max_age,
+      profilepic: req.body.profilepic},
     { where: {id : req.body.id} }
     ).then(function(){
       res.redirect('/profile')
@@ -251,10 +252,10 @@ app.post('/editprofile', (req, res) => {
 })
 
 app.post('/addimage', (req, res) => {
-  let userpic = db.Profilepic.build(
-    {imagesource: req.body.imagesource,
-    userid: req.body.id}
-    ).then(function(){
+  let userpic = db.Profilepic.build({
+    imagesource: req.body.imagesource,
+    userid: req.body.id,
+  }).then(function(){
 
     userpic.save().then(function(savedpic){
       console.log(savedpic)

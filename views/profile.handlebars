@@ -196,6 +196,10 @@
           <label class="col-form-label">Bio</label>
           <textarea name="bio" class="form-control" rows="5" cols="50" value='{{bio}}'></textarea>
         </div>
+        <div class="form-group">
+          <label class="col-form-label">Profile Picture</label>
+          <textarea name="profilepic" class="form-control" rows="5" cols="50" value='{{profilepic}}'></textarea>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -226,7 +230,7 @@
 <!-- START OF BODY -->
 
 <body>
-  <header class="masthead d-inline-flex" id="master">    
+  <header class="masthead d-inline-flex" id="master">
     <div class="container">
       <div class="row">
 
@@ -252,10 +256,10 @@
             </div>
           </div>
         </div>
-      
+
         <div class="col">
             <div class="tab-content" id="v-pills-tabContent">
-              
+
               <!-- Bio -->
               <div class="tab-pane fade show active" id="v-pills-Bio" role="tabpanel" aria-labelledby="v-pills-Bio-tab">
 
@@ -263,14 +267,14 @@
                 <h2>Gender : {{gender}}</h2>
                 <h2>Sexual Preference : {{sexpref}}</h2>
                 <h2>   Age preferences : {{youngest}} - {{oldest}}</h2>
-                <h2>Bio :</h2> <p>{{bio}}</p> 
+                <h2>Bio :</h2> <p>{{bio}}</p>
                 <a class="btn btn-outline-success nav-link js-scroll-trigger d-flex justify-content-center" href="#" data-toggle="modal" data-target="#editProfileModal">Edit Profile</a>
 
               </div>
 
               <!-- Matches -->
               <div class="tab-pane fade" id="v-pills-Matches" role="tabpanel" aria-labelledby="v-pills-Matches-tab">
-                
+
                 <form action="/findmatches" method="get" class="justify-content-center centered-top">
                   <input class="btn btn-warning btn-outline btn-xl" type="submit" value="Start Matching">
                 </form>
@@ -296,7 +300,7 @@
                     <input type="submit" class="btn btn-warning btn-outline btn-xl" value="submit"/>
                   </div>
                 </form>
-        
+
               </div>
 
               <!-- Settings -->
@@ -310,7 +314,7 @@
       </div>
       {{/userslist}}
     </div>
-    
+
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
