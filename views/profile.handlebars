@@ -163,27 +163,81 @@
             <label for="party-time">Date of Birth:</label>
             <input type="date" id="dob" name="dob" max="2000-06-07"/>
         </div>
-        <div class="form-inline" style="display: inline-grid; margin: 0 3em 0 4em;">
-          <label for="gender" class="col-form-label inline">Gender</label>
-          <div class="radio" style="display:flex;">
-            <label class="radio"><input type="radio" name="gender" value="male"> Male</label>
-          </div>
-          <div class="radio" style="display:flex;">
-          <label class="radio"><input type="radio" name="gender" value="female"> Female</label>
-          </div>
+        
+        <input id="currentgender" type="hidden" name="currentgender" value="{{gender}}"/>
+
+        <div id="editgender" class="form-inline" style="display: inline-grid; margin: 0 3em 0 4em;">
+
+          <script>
+            let option = document.getElementById("editgender")
+            let currentSex = document.getElementById("currentgender").value
+            if (currentSex == "male"){
+              option.innerHTML = `
+              <label for="gender" class="col-form-label inline">Gender</label>
+              <div class="radio" style="display:flex;">
+                <label class="radio"><input type="radio" name="gender" value="male" checked> Male</label>
+              </div>
+              <div class="radio" style="display:flex;">
+              <label class="radio"><input type="radio" name="gender" value="female"> Female</label>
+              </div>`
+            } else if (currentSex == "female"){
+              option.innerHTML = `<label for="gender" class="col-form-label inline">Gender</label>
+              <div class="radio" style="display:flex;">
+                <label class="radio"><input type="radio" name="gender" value="male"> Male</label>
+              </div>
+              <div class="radio" style="display:flex;">
+              <label class="radio"><input type="radio" name="gender" value="female" checked> Female</label>
+              </div>`
+            }
+          </script>
+          
         </div>
-        <div class="form-inline" style="display: inline-grid; margin: 0 3em 0 4em;">
-          <label for="sex-pref" class="col-form-label inline">Sexual Preference</label>
-          <div class="radio" style="display:flex;">
-            <label class="radio"><input type="radio" name="sexpref" value="male">  Seeking Male</label>
-          </div>
-          <div class="radio" style="display:flex;">
-            <label class="radio"><input type="radio" name="sexpref" value="female">  Seeking Female</label>
-          </div>
-          <div class="radio" style="display:flex;">
-            <label class="radio"><input type="radio" name="sexpref" value="both">  Seeking Both</label>
-          </div>
+
+        <div id="editsexpref" class="form-inline" style="display: inline-grid; margin: 0 3em 0 4em;">
+
+          <input id="sexpreff" type="hidden" name="sexpref" value = '{{sexpref}}'/>
+          <script>
+
+            let element = document.getElementById("editsexpref")
+            let currentPref = document.getElementById("sexpreff").value 
+            if ( currentPref == "male" ){
+                element.innerHTML = `<label for="sex-pref" class="col-form-label inline">Sexual Preference</label>
+            <div class="radio" style="display:flex;">
+              <label class="radio"><input type="radio" name="sexpref" value="male" checked>  Seeking Male</label>
+            </div>
+            <div class="radio" style="display:flex;">
+              <label class="radio"><input type="radio" name="sexpref" value="female">  Seeking Female</label>
+            </div>
+            <div class="radio" style="display:flex;">
+              <label class="radio"><input type="radio" name="sexpref" value="both">  Seeking Both</label>
+            </div>`
+            } else if (currentPref == "female") {
+              element.innerHTML = `<label for="sex-pref" class="col-form-label inline">Sexual Preference</label>
+            <div class="radio" style="display:flex;">
+              <label class="radio"><input type="radio" name="sexpref" value="male">  Seeking Male</label>
+            </div>
+            <div class="radio" style="display:flex;">
+              <label class="radio"><input type="radio" name="sexpref" value="female" checked>  Seeking Female</label>
+            </div>
+            <div class="radio" style="display:flex;">
+              <label class="radio"><input type="radio" name="sexpref" value="both">  Seeking Both</label>
+            </div>`
+            } else if (currentPref == "both") {
+              element.innerHTML = `<label for="sex-pref" class="col-form-label inline">Sexual Preference</label>
+            <div class="radio" style="display:flex;">
+              <label class="radio"><input type="radio" name="sexpref" value="male">  Seeking Male</label>
+            </div>
+            <div class="radio" style="display:flex;">
+              <label class="radio"><input type="radio" name="sexpref" value="female">  Seeking Female</label>
+            </div>
+            <div class="radio" style="display:flex;">
+              <label class="radio"><input type="radio" name="sexpref" value="both" checked>  Seeking Both</label>
+            </div>`}
+
+          </script> 
+  
         </div>
+
         <div class="form-inline">
           <label class="col-form-label" for="min_age">Minimum age of Matches</label>
           <input type="number" name="min_age" min="18" max="99" style="display:block;" value="18">
