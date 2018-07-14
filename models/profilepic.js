@@ -6,9 +6,6 @@ module.exports = (sequelize, DataTypes) => {
     userid: DataTypes.INTEGER,
 
   }, {});
-  Profilepic.associate = function(models) {
-    // associations can be defined here
-  };
 
   return Profilepic;
 };
