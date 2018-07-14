@@ -68,31 +68,12 @@ req.session.destroy()
 res.redirect('/')
 })
 
-//stephen.js
 app.get('/', (req, res)=>{
     res.render('landing')
 })
 
 app.use(express.static('public'))
 
-// app.post('/', (req, res)=>{
-//     let email = req.body.register_email
-//     let password = req.body.register_password
-//     let gender = req.body.optradio
-//     let sexpref = req.body.optradio2
-//     console.log("works!")
-//     console.log(email)
-//     console.log(password)
-//     console.log(gender)
-//     console.log(sexpref)
-//
-//     // const list = models.list.build({
-//     //     name: name
-//     // })
-//     // list.save().then((newList)=>{
-//     //     console.log(newList)
-//     // })
-// })
 
 app.get('/profile', (req, res) => {
   console.log(req.session.id)
@@ -168,6 +149,7 @@ bcrypt.hash(req.body.register_password, 10, function(err, hash) {
     bio: '',
     youngest: req.body.min_age,
     oldest: req.body.max_age,
+    profilepic: 'img/profile-placeholder.png',
   })
   // save the student in the database
   newUser.save().then(function(savedUser){
@@ -255,13 +237,13 @@ app.post('/addimage', (req, res) => {
   let userpic = db.Profilepic.build({
     imagesource: req.body.imagesource,
     userid: req.body.id,
-  }).then(function(){
+  })
 
     userpic.save().then(function(savedpic){
       console.log(savedpic)
       res.redirect('/profile')
     })
-  }).catch(function(err) {res.redirect('/profile')})
+
 })
 
 // app.post('/edit-firstname', (req, res) => {
