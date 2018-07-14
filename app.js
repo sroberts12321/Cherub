@@ -168,7 +168,7 @@ bcrypt.hash(req.body.register_password, 10, function(err, hash) {
     bio: '',
     youngest: req.body.min_age,
     oldest: req.body.max_age,
-    profilepic: './public/images/bandwagon-resize.png',
+    profilepic: './public/img/profile-placeholder.png',
   })
   // save the student in the database
   newUser.save().then(function(savedUser){
