@@ -242,6 +242,7 @@ app.post('/addimage', (req, res) => {
     userpic.save().then(function(savedpic){
       console.log(savedpic)
       res.redirect('/profile')
+    })
 
 })
 
