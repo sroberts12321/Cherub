@@ -198,7 +198,7 @@
         </div>
         <div class="form-group">
           <label class="col-form-label">Profile Picture</label>
-          <textarea name="profilepic" class="form-control" rows="5" cols="50" value='{{profilepic}}'></textarea>
+          <input type="text" class="form-control" name="profilepic" value='{{profilepic}}'></textarea>
         </div>
       </div>
       <div class="modal-footer">
@@ -251,7 +251,7 @@
           <div class="h-100">
             <div class="col row-justify-content-center mt-5 table">
               <!-- Insert profile pic src below -->
-              <img id="profile_pic" src="img/profile-placeholder.png" class="rounded-circle" alt="Profile Pic" width="280" height="280">
+              <img id="profile_pic" src="{{profilepic}}" alt='img/profile-placeholder.png' class="rounded-circle" alt="Profile Pic" width="280" height="280">
               <h3 class="text-center ml-2">{{firstname}} {{lastname}}</h3>
             </div>
           </div>
