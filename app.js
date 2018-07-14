@@ -42,6 +42,8 @@ app.use(express.static(path.join(process.env.ROOT_DIR, 'public')))
 app.set('views', path.join(process.env.ROOT_DIR, 'views'))
 app.set('view engine', 'handlebars')
 
+
+//login page
 app.post('/login', (req, res) => {
 //verify matching username and password
 db.UserProfile.findOne({where: {email : req.body.email}}).then(function(userfound){
@@ -72,8 +74,8 @@ app.get('/', (req, res)=>{
     res.render('landing')
 })
 
+//may cause problems???!!!
 app.use(express.static('public'))
-
 
 app.get('/profile', (req, res) => {
   console.log(req.session.id)
@@ -107,11 +109,11 @@ app.post('/match', (req, res) => {
   })
   reverseNomination.save().then(function(savedNomination){
     console.log(savedNomination)
-    res.redirect('/test')
+    res.redirect('/matches')
   }).catch(function(err) {res.redirect('/')})
   })
 
-app.get('/test', (req, res) => {
+app.get('/matches', (req, res) => {
 db.Nomination.findAll({where: {nomineeprospectid : req.session.userid}}).then(function(matches){
  let matchesArray = []
  if(matches.length > 0){
@@ -120,7 +122,7 @@ db.Nomination.findAll({where: {nomineeprospectid : req.session.userid}}).then(fu
  }
  }
 db.UserProfile.findAll({where: { id: {[Op.in]: matchesArray}}}).then(function(matchedUsers){
-res.render('test', {matchesList: matchedUsers})
+res.render('matches', {matchesList: matchedUsers})
   })
 }).catch(function(err) {res.redirect('/profile')})
 })
@@ -132,8 +134,6 @@ app.get('/users', (req, res) => {
     res.render('users', {userslist: users})
   })
 })
-
-//app.get('/register', (req, res) => res.render('register'))
 
 app.post('/register', (req, res) => {
 
@@ -183,7 +183,7 @@ app.post('/deleteMatch', (req, res) => {
       nominee : req.body.matchid
     }
     }).then(function(){
-      res.redirect('/test')
+      res.redirect('/matches')
   })
 })
 
@@ -245,102 +245,6 @@ app.post('/addimage', (req, res) => {
     })
 
 })
-
-// app.post('/edit-firstname', (req, res) => {
-//   db.UserProfile.update(
-//     { firstname: req.body.firstname },
-//     { where: {id : req.body.id} }
-//     ).then(function(){
-//       res.redirect('/profile')
-//   }).catch(res.redirect('/profile'))
-// })
-//
-// app.post('/edit-lastname', (req, res) => {
-//   db.UserProfile.update(
-//     { lastname: req.body.lastname },
-//     { where: {id : req.body.id} }
-//     ).then(function(){
-//       res.redirect('/profile')
-//   }).catch(res.redirect('/profile'))
-// })
-//
-// app.post('/edit-dob', (req, res) => {
-//   db.UserProfile.update(
-//     { dob: req.body.dob },
-//     { where: {id : req.body.id} }
-//     ).then(function(){
-//       res.redirect('/profile')
-//   }).catch(res.redirect('/profile'))
-// })
-//
-// app.post('/edit-email', (req, res) => {
-//   db.UserProfile.update(
-//     { email: req.body.email },
-//     { where: {id : req.body.id} }
-//     ).then(function(){
-//       res.redirect('/profile')
-//   }).catch(res.redirect('/profile'))
-// })
-//
-// app.post('/edit-bio', (req, res) => {
-//   db.UserProfile.update(
-//     { bio: req.body.bio },
-//     { where: {id : req.body.id} }
-//     ).then(function(){
-//       res.redirect('/profile')
-//   }).catch(res.redirect('/profile'))
-// })
-//
-// app.post('/edit-gender', (req, res) => {
-//   db.UserProfile.update(
-//     { gender: req.body.gender},
-//     { where: {id : req.body.id} }
-//     ).then(function(){
-//       res.redirect('/profile')
-//   }).catch(res.redirect('/profile'))
-// })
-//
-// app.post('/edit-sexpref', (req, res) => {
-//   db.UserProfile.update(
-//     { sexpref: req.body.sexpref },
-//     { where: {id : req.body.id} }
-//     ).then(function(){
-//       res.redirect('/profile')
-//   }).catch(res.redirect('/profile'))
-// })
-//
-// app.post('/edit-youngest', (req, res) => {
-//   db.UserProfile.update(
-//     { youngest: req.body.youngest },
-//     { where: {id : req.body.id} }
-//     ).then(function(){
-//       res.redirect('/profile')
-//   }).catch(res.redirect('/profile'))
-// })
-//
-// app.post('/edit-oldest', (req, res) => {
-//   db.UserProfile.update(
-//     { oldest: req.body.oldest },
-//     { where: {id : req.body.id} }
-//     ).then(function(){
-//       res.redirect('/profile')
-//   }).catch(res.redirect('/profile'))
-// })
-
-
-/* app.get('/db', async (req, res) => {
-  try {
-    const client = await pool.connect()
-    const result = await client.query('SELECT * FROM test_table');
-    res.render('pages/db', result);
-    client.release();
-  } catch (err) {
-    console.error(err);
-    res.send("Error " + err);
-  }
-}) */
-
-// app.listen(3000, ()=>console.log('cherub app is listening on port 3000!'))
 
 db.sequelize.sync().then(function() {
   http.createServer(app).listen(PORT, function(){
