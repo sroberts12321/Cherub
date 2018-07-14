@@ -163,7 +163,7 @@
             <label for="party-time">Date of Birth:</label>
             <input type="date" id="dob" name="dob" max="2000-06-07"/>
         </div>
-        
+
         <input id="currentgender" type="hidden" name="currentgender" value="{{gender}}"/>
 
         <div id="editgender" class="form-inline" style="display: inline-grid; margin: 0 3em 0 4em;">
@@ -190,7 +190,7 @@
               </div>`
             }
           </script>
-          
+
         </div>
 
         <div id="editsexpref" class="form-inline" style="display: inline-grid; margin: 0 3em 0 4em;">
@@ -199,7 +199,7 @@
           <script>
 
             let element = document.getElementById("editsexpref")
-            let currentPref = document.getElementById("sexpreff").value 
+            let currentPref = document.getElementById("sexpreff").value
             if ( currentPref == "male" ){
                 element.innerHTML = `<label for="sex-pref" class="col-form-label inline">Sexual Preference</label>
             <div class="radio" style="display:flex;">
@@ -234,8 +234,8 @@
               <label class="radio"><input type="radio" name="sexpref" value="both" checked>  Seeking Both</label>
             </div>`}
 
-          </script> 
-  
+          </script>
+
         </div>
 
         <div class="form-inline">
@@ -252,7 +252,7 @@
         </div>
         <div class="form-group">
           <label class="col-form-label">Profile Picture</label>
-          <input type="text" class="form-control" name="profilepic" value='{{profilepic}}'></textarea>
+          <input type="text" class="form-control" name="profilepic" >{{profilepic}}</textarea>
         </div>
       </div>
       <div class="modal-footer">
