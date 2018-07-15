@@ -255,7 +255,7 @@ app.post('/addmatchmaker', (req, res) => {
 
     matchmaker.save().then(function(savedmatchmaker){
       console.log(savedmatchmaker)
-      res.redirect('/matchmakers')
+      res.redirect('/profile')
     })
   }).catch(function(err) {res.redirect('/profile')})
 })
