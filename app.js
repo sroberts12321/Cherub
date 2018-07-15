@@ -246,6 +246,37 @@ app.post('/addimage', (req, res) => {
 
 })
 
+app.post('/addmatchmaker', (req, res) => {
+  db.UserProfile,findOne({where: {email : req.body.matchmakeremail}}).then(function(err, userfound){
+  let matchmaker = db.Matchmaker.build({
+    nomineeid: req.body.id,
+    matchmakerid: userfound.id,
+  })
+
+    matchmaker.save().then(function(savedmatchmaker){
+      console.log(savedmatchmaker)
+      res.redirect('/profile')
+    })
+  }).catch(function(err) {res.redirect('/profile')})
+})
+
+app.get('/matchmakers', (req, res) => {
+  db.Matchmaker.findAll({where: {nomineeid : req.body.id}}).then(function(makers){
+    console.log(makers)
+    res.render('makers', {makerslist: makers})
+  })
+})
+
+app.post('/deleteMatchmaker', (req, res) => {
+  db.Matchmaker.destroy({
+    where: {
+      nominee : req.body.makerid
+    }
+    }).then(function(){
+      res.redirect('/makers')
+  })
+})
+
 db.sequelize.sync().then(function() {
   http.createServer(app).listen(PORT, function(){
     console.log('Express server listening on port ' + app.get('port'));
