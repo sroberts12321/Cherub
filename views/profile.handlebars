@@ -158,15 +158,8 @@
           <label class="col-form-label">Last Name</label>
           <input type="text" class="form-control" name="lastname" value='{{lastname}}'>
         </div>
-        <div style="margin: 1em 0 1.5em 6em;">
-            <label for="party-time">Date of Birth:</label>
-            <input type="date" id="dob" name="dob" max="2000-06-07"/>
-        </div>
-
         <input id="currentgender" type="hidden" name="currentgender" value="{{gender}}"/>
-
         <div id="editgender" class="form-inline" style="display: inline-grid; margin: 0 3em 0 4em;">
-
           <script>
             let option = document.getElementById("editgender")
             let currentSex = document.getElementById("currentgender").value
@@ -239,11 +232,11 @@
 
         <div class="form-inline">
           <label class="col-form-label" for="min_age">Minimum age of Matches</label>
-          <input type="number" name="min_age" min="18" max="99" style="display:block;" value="18">
+          <input type="number" name="min_age" min="18" max="99" style="display:block;" value={{youngest}}>
         </div>
         <div class="form-inline">
           <label class="col-form-label" for="max_age">Maximum age of Matches</label>
-          <input type="number" name="max_age" min="19" max="100" style="display:block;" value="19">
+          <input type="number" name="max_age" min="19" max="100" style="display:block;" value={{oldest}}>
         </div>
         <div class="form-group">
           <label class="col-form-label">Bio</label>
