@@ -270,7 +270,7 @@ app.get('/matchmakers', (req, res) => {
 app.post('/deleteMatchmaker', (req, res) => {
   db.Matchmaker.destroy({
     where: {
-      nominee : req.body.makerid
+      matchmakerid : req.body.makerid
     }
     }).then(function(){
       res.redirect('/makers')
