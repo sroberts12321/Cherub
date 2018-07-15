@@ -46,13 +46,18 @@
   </nav>
 
 </head>
+<style>
+      .blktxt {
+      color: black;
+    }
+</style>
 <header class="masthead">
   <div class="container h-100">
     <div class="col-lg-7 my-auto">
 
 
 {{#matchesList}}
-<div class="card text-white bg-secondary mb-3">
+<div class="card text-white bg-secondary mb-3 justify-content-center centered">
 <img class="card-img-top" src="img/profile-placeholder.png" alt="Card image cap">
 <!--
 <img src="img/1_1 cropped.jpg" class="img-circle mx-auto d-block shadow p-3 mb-5 bg-white" alt="Profile Pic" width="180" height="180">
@@ -63,7 +68,7 @@
 <p class="card-text">{{bio}}</p>
 <form action='/deleteMatch' method='post'>
   <input type="hidden" name="matchid" value="{{id}}"/>
-  <input type="submit" name='submitbtn' value="Delete Match" />
+  <input class="blktxt" type="submit" name='submitbtn' value="Delete Match" />
 </form>
 </div>
 </div>

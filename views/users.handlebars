@@ -73,6 +73,11 @@
         </nav>
 
     </head>
+<style>
+  .blktxt {
+  color: black;
+}
+</style>
 
     <body>
       <header class="masthead">
@@ -80,7 +85,7 @@
           <div class="col-lg-7 my-auto">
 
         {{#userslist}}
-        <div class="card text-white bg-secondary mb-3">
+        <div class="card text-white bg-secondary mb-3 justify-content-center centered">
         <img class="card-img-top" src="{{profilepic}}" alt="Card image cap">
         <!--
         <img src="img/1_1 cropped.jpg" class="img-circle mx-auto d-block shadow p-3 mb-5 bg-white" alt="Profile Pic" width="180" height="180">
@@ -90,7 +95,7 @@
         <p class="card-text">{{bio}}</p>
         <form action='/match' method='post'>
           <input type="hidden" name="matchid" value="{{id}}"/>
-          <input type="submit" name='submitbtn' value="Match" />
+          <input class="blktxt" type="submit" name='submitbtn' value="Match" />
         </form>
         </div>
         </div>
