@@ -294,7 +294,7 @@
             <div class="nav flex-column nav-tabs-google" id="v-pills-tab" role="tablist" aria-orientation="vertical">
               <a class="nav-link active" id="v-pills-Bio-tab" data-toggle="pill" href="#v-pills-Bio" role="tab" aria-controls="v-pills-Bio" aria-selected="true"><h1>Bio</h1></a><br>
               <a class="nav-link" id="v-pills-Matches-tab" data-toggle="pill" href="#v-pills-Matches" role="tab" aria-controls="v-pills-Matches" aria-selected="false"><h1>Matches</h1></a><br>
-              <a class="nav-link" id="v-pills-Pictures-tab" data-toggle="pill" href="#v-pills-Pictures" role="tab" aria-controls="v-pills-Pictures" aria-selected="false"><h1>Pictures</h1></a><br>
+              <a class="nav-link" id="v-pills-Pictures-tab" data-toggle="pill" href="#v-pills-Pictures" role="tab" aria-controls="v-pills-Pictures" aria-selected="false"><h1>Matchmakers</h1></a><br>
               <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false"><h1>Settings</h1></a><br>
             </div>
 
@@ -341,8 +341,31 @@
 
               </div>
 
-              <!-- Pictures -->
+              <!-- Match Makers -->
               <div class="tab-pane fade" id="v-pills-Pictures" role="tabpanel" aria-labelledby="v-pills-Pictures-tab">
+
+                <form action="/addmatchmaker" method="POST" class="padding">
+                  <div class="form-group">
+                    <input type="hidden" name="id" value='{{id}}'/>
+                    <label class="col-form-label">Matchmaker Email</label>
+                    <input type="text" class="form-control" name="matchmakeremail"/>
+                  </div>
+                  <div class="modal-footer justify-content-center centered">
+                    <input type="submit" class="btn btn-warning btn-outline btn-xl" value="ADD"/>
+                  </div>
+                </form>
+
+                <form action="/matchmakers" method="get" class="justify-content-center centered">
+                  <input type="hidden" name="id" value='{{id}}'/>
+                  <input class="btn btn-warning btn-outline btn-xl" type="submit" value="View Matchmkers">
+                </form>
+
+              </div>
+
+              <!-- Settings -->
+              <div class="tab-pane fade padding" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                <h2 class="d-flex justify-content-center">Delete Profile</h2>
+                <a class="nav-link js-scroll-trigger d-flex justify-content-center" href="#" data-toggle="modal" data-target="#deleteModal">Delete Profile</a>
 
                 <form action="/addimage" method="POST" class="padding">
                   <input type ='hidden' name='id' value='{{id}}'>
@@ -357,11 +380,6 @@
 
               </div>
 
-              <!-- Settings -->
-              <div class="tab-pane fade padding" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                <h2 class="d-flex justify-content-center">Delete Profile</h2>
-                <a class="nav-link js-scroll-trigger d-flex justify-content-center" href="#" data-toggle="modal" data-target="#deleteModal">Delete Profile</a>
-              </div>
             </div>
         </div>
         </div>
