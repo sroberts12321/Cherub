@@ -148,7 +148,7 @@ bcrypt.hash(req.body.register_password, 10, function(err, hash) {
     sexpref: req.body.sexpref,
     gender: req.body.gender,
     password: hash,
-    bio: '',
+    bio: 'try adding a bio!',
     youngest: req.body.min_age,
     oldest: req.body.max_age,
     profilepic: 'img/profile-placeholder.png',
