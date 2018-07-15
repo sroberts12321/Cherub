@@ -156,8 +156,8 @@ bcrypt.hash(req.body.register_password, 10, function(err, hash) {
   // save the student in the database
   newUser.save().then(function(savedUser){
     if(req.session){//set that session BOI
-    console.log(userfound.id)
-    req.session.userid = userfound.id
+    console.log(savedUser.id)
+    req.session.userid = savedUser.id
     // setting the expiration date of the cookies so we can
     // come back later even if we close the browser
     var hour = 3600000
