@@ -261,7 +261,7 @@ app.post('/addmatchmaker', (req, res) => {
 })
 
 app.get('/matchmakers', (req, res) => {
-db.Matchmaker.findAll({where: {nomineeid : req.body.id}}).then(function(makers){
+db.Matchmaker.findAll({where: {nomineeid : req.session.userid}}).then(function(makers){
  let makersArray = []
  if(makers.length > 0){
    for(index = 0; index < makers.length; index++){
