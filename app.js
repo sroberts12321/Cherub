@@ -247,7 +247,7 @@ app.post('/addimage', (req, res) => {
 })
 
 app.post('/addmatchmaker', (req, res) => {
-  db.UserProfile.findOne({where: {email : req.body.matchmakeremail}}).then(function(err, userfound){
+  db.UserProfile.findOne({where: {email : req.body.matchmakeremail}}).then(function(userfound){
   let matchmaker = db.Matchmaker.build({
     nomineeid: req.body.id,
     matchmakerid: userfound.id,
