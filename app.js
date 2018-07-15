@@ -255,7 +255,7 @@ app.post('/addmatchmaker', (req, res) => {
 
     matchmaker.save().then(function(savedmatchmaker){
       console.log(savedmatchmaker)
-      res.redirect('/profile')
+      res.redirect('/makers')
     })
   }).catch(function(err) {res.redirect('/profile')})
 })
@@ -281,7 +281,7 @@ app.post('/deleteMatchmaker', (req, res) => {
       matchmakerid : req.body.makerid
     }
     }).then(function(){
-      res.redirect('/makers')
+      res.redirect('/profile')
   })
 })
 
